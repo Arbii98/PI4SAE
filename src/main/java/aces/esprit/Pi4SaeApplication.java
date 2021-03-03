@@ -11,7 +11,7 @@ public class Pi4SaeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pi4SaeApplication.class, args);
-		l.info("Bonjour chabeb");
+		l.info("Bonjour lebnet");
 	}
 
 }
