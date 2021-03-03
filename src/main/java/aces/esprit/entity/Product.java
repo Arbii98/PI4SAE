@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -55,9 +56,21 @@ public class Product implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "fkIdAd")
 	private Advertising advertising;
+	
+	
+	@ManyToOne
+	private Rayon rayon;
 
 	public Product() {
 		super();
+	}
+
+	public Rayon getRayon() {
+		return rayon;
+	}
+
+	public void setRayon(Rayon rayon) {
+		this.rayon = rayon;
 	}
 
 	public Product(int idProduct, String nameProduct, String descriptionProduct, float priceProduct,

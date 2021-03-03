@@ -45,6 +45,11 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "receiver")
 	@JsonIgnore
 	private List<Message> messagesReceived;
+	
+	
+	
+	@OneToMany(mappedBy="client")
+	private List<Cart> carts;
 
 
 	
