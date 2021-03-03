@@ -2200,3 +2200,8 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 2021-03-03 17:47:25.817  INFO 4436 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
 2021-03-03 17:47:25.985  INFO 4436 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path '/SpringMVC'
 2021-03-03 17:47:25.987  INFO 4436 --- [main] aces.esprit.Pi4SaeApplication            : Started Pi4SaeApplication in 2.877 seconds (JVM running for 3.671)
+2021-03-03 17:49:15.380  INFO 4436 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-03-03 17:49:15.384  INFO 4436 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-03 17:49:15.385  INFO 4436 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-03-03 17:49:15.388  INFO 4436 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-03-03 17:49:15.395  INFO 4436 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
