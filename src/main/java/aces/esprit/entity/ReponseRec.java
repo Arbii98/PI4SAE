@@ -1,7 +1,7 @@
 package aces.esprit.entity;
-
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,34 +9,33 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
-@Entity
 @Component
-public class Reclamation implements Serializable {
+@Entity
+public class ReponseRec implements Serializable {
+	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	
-	@OneToOne
-	private Delivery livraison;
-	
-	
-	private String description;
+	@Enumerated(EnumType.STRING)
+	private Decision decision;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateReclamation;
+	private Date dateReponse;
 	
-	@Enumerated(EnumType.STRING)
-	private ReclamationStatus etatReclamation;
+	private String message;
 	
-	@OneToOne(mappedBy="reclamation")
-	private ReponseRec reponseReclamation;
+	@OneToOne
+	private Reclamation reclamation ;
+	
+	
 	
 	
 
