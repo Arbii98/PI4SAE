@@ -1,0 +1,44 @@
+2021-03-04 00:09:12.975  INFO 62149 --- [main] aces.esprit.Pi4SaeApplication            : Starting Pi4SaeApplication on MacBook-Pro-de-wided.local with PID 62149 (/Users/wided/Desktop/GYT/PI4SAE/target/classes started by wided in /Users/wided/Desktop/GYT/PI4SAE)
+2021-03-04 00:09:13.060  INFO 62149 --- [main] aces.esprit.Pi4SaeApplication            : No active profile set, falling back to default profiles: default
+2021-03-04 00:09:13.850  INFO 62149 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-03-04 00:09:13.936  INFO 62149 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68ms. Found 1 repository interfaces.
+2021-03-04 00:09:14.348  INFO 62149 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-03-04 00:09:14.653  INFO 62149 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2021-03-04 00:09:14.667  INFO 62149 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-03-04 00:09:14.667  INFO 62149 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2021-03-04 00:09:14.847  INFO 62149 --- [main] o.a.c.c.C.[.[localhost].[/SpringMVC]     : Initializing Spring embedded WebApplicationContext
+2021-03-04 00:09:14.849  INFO 62149 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1694 ms
+2021-03-04 00:09:15.052  INFO 62149 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-03-04 00:09:15.119  INFO 62149 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2021-03-04 00:09:15.232  INFO 62149 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-03-04 00:09:15.331  INFO 62149 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-03-04 00:09:15.507  INFO 62149 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-03-04 00:09:15.524  INFO 62149 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-03-04 00:09:15.826  WARN 62149 --- [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): aces.esprit.entity.CommentPk
+2021-03-04 00:09:15.826  WARN 62149 --- [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): aces.esprit.entity.CommentPk
+2021-03-04 00:09:16.492  INFO 62149 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-03-04 00:09:16.498  INFO 62149 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-03-04 00:09:17.042  WARN 62149 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-03-04 00:09:17.316  INFO 62149 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-03-04 00:09:17.559  INFO 62149 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-03-04 00:09:17.569  INFO 62149 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-03-04 00:09:17.571 ERROR 62149 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2021-03-04 00:09:17.573  INFO 62149 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-03-04 00:09:17.574  INFO 62149 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-03-04 00:09:17.576  INFO 62149 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-03-04 00:09:17.589  INFO 62149 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

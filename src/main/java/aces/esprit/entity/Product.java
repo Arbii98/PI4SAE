@@ -75,8 +75,6 @@ public class Product implements Serializable{
 		this.category = category;
 	}
 
-
-
 	public Product(int idProduct, String nameProduct, String descriptionProduct, float priceProduct, Date dateCreationProduct, String imageFileNameProduct, String videoFileNameProduct, int barcodeProduct) {
 		super();
 		this.idProduct = idProduct;
@@ -164,6 +162,24 @@ public class Product implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Advertising getAdvertising() {
+		return advertising;
+	}
+
+	public void setAdvertising(Advertising advertising) {
+		this.advertising = advertising;
+	}
+
+	
 	
 	
 
