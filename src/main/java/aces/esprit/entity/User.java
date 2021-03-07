@@ -17,6 +17,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @DiscriminatorColumn(name="TYPE")
 @DiscriminatorValue("User")
 public class User implements Serializable {
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", messagesSent=" + messagesSent + ", messagesReceived=" + messagesReceived
+				+ ", carts=" + carts + "]";
+	}
 	@Id
 	private int id;
 	
@@ -45,6 +50,10 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "receiver")
 	@JsonIgnore
 	private List<Message> messagesReceived;
+	
+	@OneToMany(mappedBy = "users")
+	@JsonIgnore
+	private List<RatingComment> rating;
 	
 	
 	

@@ -21,6 +21,16 @@ public class RatingComment implements Serializable {
 	
 	@ManyToOne
 	private Comment comment;
+	@ManyToOne
+	private User users;
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
 
 	public RatingComment() {
 		super();

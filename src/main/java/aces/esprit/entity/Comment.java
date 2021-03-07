@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Comment implements Serializable {
+	@Override
+	public String toString() {
+		return "Comment [commentPk=" + commentPk + ", description=" + description + ", user=" + user + ", publication="
+				+ publication + ", ratingcomment=" + ratingcomment + "]";
+	}
 	@EmbeddedId
 	private CommentPk commentPk;
 	
