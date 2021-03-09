@@ -22,7 +22,16 @@ public class DeliveryMan extends User implements Serializable  {
 	@Enumerated(EnumType.STRING)
 	private DeliveryManStatus etat;
 	
+	public DeliveryMan()
+	{
+		super();
+	}
 	
+	
+	public DeliveryMan(int id)
+	{
+		super(id);
+	}
 	
 	
 

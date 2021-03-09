@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class Delivery implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	@ManyToOne
 	private DeliveryMan livreur;
@@ -42,11 +42,11 @@ public class Delivery implements Serializable {
 	
 	
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 public class Commande implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 
 	
 	private float total;
@@ -39,12 +39,53 @@ public class Commande implements Serializable {
 	@OneToMany(mappedBy="commande")
 	private List<Cart> carts;
 	
-	public long getId() {
+	public Commande()
+	{
+	}
+	
+	public Commande(int id)
+	{
+		this.id=id;
+	}
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
+	public OrderStatus getEtat() {
+		return etat;
+	}
+
+	public void setEtat(OrderStatus etat) {
+		this.etat = etat;
+	}
+
+	public Date getDateOrder() {
+		return dateOrder;
+	}
+
+	public void setDateOrder(Date dateOrder) {
+		this.dateOrder = dateOrder;
+	}
+
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 	
 	
