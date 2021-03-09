@@ -13,11 +13,10 @@ import javax.persistence.OneToOne;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Component
 public class Cart implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	
 	@ManyToOne
@@ -31,17 +30,40 @@ public class Cart implements Serializable {
 	
 	private int quantite;
 	
+	private float total;
 	
+	
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
 	@ManyToOne
 	private Commande commande;
-
+	
+	public Cart()
+	{
+		super();
+	}
+	
+	public Cart(int quantite,Product p,User c,Commande com)
+	{
+		this.quantite=quantite;
+		this.produit=p;
+		this.client=c;
+		this.commande=com;
+	}
+	
 
 	public long getId() {
 		return id;
 	}
 
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -66,6 +88,9 @@ public class Cart implements Serializable {
 	}
 
 
+	
+
+
 	public int getQuantite() {
 		return quantite;
 	}
@@ -75,15 +100,15 @@ public class Cart implements Serializable {
 		this.quantite = quantite;
 	}
 
-
-	/*public Order getOrder() {
-		return order;
+	public Commande getCommande() {
+		return commande;
 	}
 
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}*/
+	
 	
 	
 	

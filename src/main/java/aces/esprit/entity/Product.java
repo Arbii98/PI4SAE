@@ -64,6 +64,12 @@ public class Product implements Serializable{
 	public Product() {
 		super();
 	}
+	
+	public Product(int id)
+	{
+		super();
+		this.idProduct=id;
+	}
 
 	public Rayon getRayon() {
 		return rayon;
