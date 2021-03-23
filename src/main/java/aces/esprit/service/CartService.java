@@ -10,6 +10,8 @@ import aces.esprit.entity.User;
 import aces.esprit.repository.CartRepository;
 import aces.esprit.repository.ProductRepository;
 import aces.esprit.repository.UserRepository;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,20 +31,27 @@ public class CartService implements ICartService{
 
 	@Override
 	public Cart addCart(Cart cart) {
-
+		Date date = new Date();
+		List<Cart>PanierCourant = cr.findByClientCourant(cart.getClient());
+		for(Cart c : PanierCourant)
+		{
+			c.setDateCreation(date);
+			cr.save(c);
+		}
 		
 		List<Cart> liste =cr.findByClientAndProduit(cart.getClient(), cart.getProduit());
 		if(liste.size()>0)
 		{
 			liste.get(0).setQuantite(liste.get(0).getQuantite()+cart.getQuantite());
 			liste.get(0).setTotal(liste.get(0).getQuantite()*liste.get(0).getProduit().getPriceProduct());
+			
+			liste.get(0).setDateCreation(date);
 			cr.save(liste.get(0));
 			return liste.get(0);
 		}
 		else
 		{
-			//El produit yji nekes mel request (fih ken id)  donc lezem njibou mel base beech nekhou el price mteeou w najjem nehseb el total
-			Product prod = (Product) pr.findById(cart.getProduit().getIdProduct()).orElse(null);
+ 			Product prod = (Product) pr.findById(cart.getProduit().getIdProduct()).orElse(null);
 			cart.setProduit(prod);
 			cart.setTotal(cart.getProduit().getPriceProduct()*cart.getQuantite());
 			cr.save(cart);
@@ -69,6 +78,10 @@ public class CartService implements ICartService{
 
 	@Override
 	public Cart decrementCart(int idCart, int quantite) {
+		
+		
+		
+		
 		Cart cart = (Cart) cr.findById(idCart).orElse(null);
 		cart.setQuantite(cart.getQuantite()-quantite);
 		cart.setTotal(cart.getProduit().getPriceProduct()*cart.getQuantite());
@@ -81,7 +94,19 @@ public class CartService implements ICartService{
 		}
 		else
 		{
+			Date date = new Date();
+			cart.setDateCreation(date);
 			cr.save(cart);
+			
+			
+			List<Cart>PanierCourant = cr.findByClientCourant(cart.getClient());
+			for(Cart c : PanierCourant)
+			{
+				c.setDateCreation(date);
+				cr.save(c);
+			}
+			
+			
 			return cart;
 			
 		}
@@ -92,6 +117,14 @@ public class CartService implements ICartService{
 	@Override
 	public void deleteCart(int idCart) {
 		cr.deleteById(idCart);
+	}
+
+
+
+	@Override
+	public void deleteUnusedCarts() {
+		cr.DeleteOldUnusedCarts();
+		
 	}
 	
 	

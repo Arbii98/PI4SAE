@@ -11,4 +11,5 @@ public interface ICartService {
 	List<Cart> GetCurrentCartsForClient(int idclient);
 	Cart decrementCart(int idCart, int quantite);
 	void deleteCart(int idCart);
+	void deleteUnusedCarts();
 }

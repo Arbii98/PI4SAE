@@ -13,6 +13,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @DiscriminatorValue("Admin")
 public class Admin extends User implements Serializable  {
 	
+	public Admin()
+	{
+		super();
+	}
+	
+	public Admin(int id)
+	{
+		super(id);
+	}
+	
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="owner", cascade=CascadeType.REMOVE)

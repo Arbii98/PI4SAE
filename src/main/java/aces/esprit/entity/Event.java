@@ -33,6 +33,15 @@ public class Event implements Serializable{
 	private String titre;
 	
 	private String description;
+	
+	public Event()
+	{
+	}
+	
+	public Event(int id)
+	{
+		this.id=id;
+	}
 
 	public int getId() {
 		return id;

@@ -23,10 +23,20 @@ public interface CartRepository extends CrudRepository<Cart, Integer>{
 	List<Cart> findByClientAndProduit( @Param("client") User client, @Param("produit")Product produit);
 	
 	
+	@Query("select c from Cart c where c.client =:client and c.commande = null")
+	List<Cart> findByClientCourant( @Param("client") User client);
+	
+	
 	List<Cart> findByClient(User client);
 
 	@Query("select c from Cart c where c.client =:client and c.commande = null")
 	List<Cart> findByClientWithoutCommande(@Param("client") User client);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value="delete from cart where commande_id is NULL and date_creation < CURRENT_DATE - 2",nativeQuery = true)
+	void DeleteOldUnusedCarts();
 	
 	/*
 	@Query("delete from Cart c where c.id=:idCart")

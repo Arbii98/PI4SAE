@@ -1,6 +1,7 @@
 package aces.esprit.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +26,11 @@ public class Cart implements Serializable {
 	private User client;
 	
 	
+	@Temporal(TemporalType.DATE)
+	private Date dateCreation;
+	
+	
+
 	@OneToOne
 	@JoinColumn(name="produit_id")
 	private Product produit;
@@ -47,6 +55,8 @@ public class Cart implements Serializable {
 	public Cart()
 	{
 		super();
+		Date date = new Date();
+		this.dateCreation=date;
 	}
 	
 	public Cart(int quantite,Product p,User c,Commande com)
@@ -55,6 +65,8 @@ public class Cart implements Serializable {
 		this.produit=p;
 		this.client=c;
 		this.commande=com;
+		Date date = new Date();
+		this.dateCreation=date;
 	}
 	
 
@@ -106,6 +118,14 @@ public class Cart implements Serializable {
 
 	public void setCommande(Commande commande) {
 		this.commande = commande;
+	}
+	
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 
 	
