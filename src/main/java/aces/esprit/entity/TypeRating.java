@@ -1,6 +1,6 @@
 package aces.esprit.entity;
 
 public enum TypeRating {
-	LIKE, DISLIKE,ANGRY,SAD, HAPPY;
+	LIKE, DISLIKE, ANGRY, SAD, HAPPY;
 
 }

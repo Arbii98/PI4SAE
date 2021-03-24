@@ -2,6 +2,8 @@ package aces.esprit.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,8 +15,8 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE")
 @DiscriminatorValue("User")
 public class User implements Serializable {
 	@Override
@@ -22,10 +24,19 @@ public class User implements Serializable {
 		return "User [id=" + id + ", messagesSent=" + messagesSent + ", messagesReceived=" + messagesReceived
 				+ ", carts=" + carts + "]";
 	}
+
 	@Id
 	private int id;
-	
 
+	private int banned;
+
+	public int getBanned() {
+		return banned;
+	}
+
+	public void setBanned(int banned) {
+		this.banned = banned;
+	}
 
 	public int getId() {
 		return id;
@@ -36,13 +47,13 @@ public class User implements Serializable {
 	}
 
 	public User(int id) {
-		super();
 		this.id = id;
 	}
 
 	public User() {
 		super();
 	}
+
 	@OneToMany(mappedBy = "sender")
 	@JsonIgnore
 	private List<Message> messagesSent;
@@ -50,17 +61,48 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "receiver")
 	@JsonIgnore
 	private List<Message> messagesReceived;
-	
+
 	@OneToMany(mappedBy = "users")
 	@JsonIgnore
 	private List<RatingComment> rating;
-	
-	
-	
-	@OneToMany(mappedBy="client")
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "userp", cascade = CascadeType.REMOVE)
+	List<Publication> publications;
+
+	public List<Message> getMessagesSent() {
+		return messagesSent;
+	}
+
+	public void setMessagesSent(List<Message> messagesSent) {
+		this.messagesSent = messagesSent;
+	}
+
+	public List<Message> getMessagesReceived() {
+		return messagesReceived;
+	}
+
+	public void setMessagesReceived(List<Message> messagesReceived) {
+		this.messagesReceived = messagesReceived;
+	}
+
+	public List<RatingComment> getRating() {
+		return rating;
+	}
+
+	public void setRating(List<RatingComment> rating) {
+		this.rating = rating;
+	}
+
+	public List<Publication> getPublications() {
+		return publications;
+	}
+
+	public void setPublications(List<Publication> publications) {
+		this.publications = publications;
+	}
+
+	@OneToMany(mappedBy = "client")
 	private List<Cart> carts;
-
-
-	
 
 }

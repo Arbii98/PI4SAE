@@ -12,13 +12,13 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class RatingComment implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idR;
 	@Enumerated(EnumType.STRING)
 	private TypeRating typerating;
-	
+
 	@ManyToOne
 	private Comment comment;
 	@ManyToOne
@@ -65,6 +65,5 @@ public class RatingComment implements Serializable {
 	public void setComment(Comment comment) {
 		this.comment = comment;
 	}
-	
 
 }
