@@ -63,6 +63,13 @@ public class DeliveryService {
 		dr.save(d);
 	}
 	
+	public String getDeliveryStatus(int idDelivery ) {
+		Delivery d = (Delivery)dr.findById(idDelivery).orElse(null);
+		return d.getEtat().toString();
+		
+		
+	}
+	
 	
 	public List<Delivery> getCurrentDeliveriesForDeliveryMan(int idDeliveryMan)
 	{

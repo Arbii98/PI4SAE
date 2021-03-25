@@ -37,7 +37,56 @@ public class Reclamation implements Serializable {
 	
 	@OneToOne(mappedBy="reclamation")
 	private ReponseRec reponseReclamation;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Delivery getLivraison() {
+		return livraison;
+	}
+
+	public void setLivraison(Delivery livraison) {
+		this.livraison = livraison;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getDateReclamation() {
+		return dateReclamation;
+	}
+
+	public void setDateReclamation(Date dateReclamation) {
+		this.dateReclamation = dateReclamation;
+	}
+
+	public ReclamationStatus getEtatReclamation() {
+		return etatReclamation;
+	}
+
+	public void setEtatReclamation(ReclamationStatus etatReclamation) {
+		this.etatReclamation = etatReclamation;
+	}
+
+	public ReponseRec getReponseReclamation() {
+		return reponseReclamation;
+	}
+
+	public void setReponseReclamation(ReponseRec reponseReclamation) {
+		this.reponseReclamation = reponseReclamation;
+	}
 	
 	
 
 }
+

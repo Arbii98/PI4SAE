@@ -41,6 +41,17 @@ public class Delivery implements Serializable {
 	private Date DeliveryDate;
 	
 	
+	public Delivery()
+	{
+		
+	}
+	
+	public Delivery(int id)
+	{
+		this.id=id;
+	}
+	
+	
 
 	public int getId() {
 		return id;
