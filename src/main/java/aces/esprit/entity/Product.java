@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -56,6 +57,11 @@ public class Product implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "fkIdAd")
 	private Advertising advertising;
+	
+	
+	//@OneToOne(mappedBy="produit")
+	@OneToOne
+	private Stock currentStock;
 	
 	
 	@ManyToOne
@@ -198,6 +204,15 @@ public class Product implements Serializable{
 		this.advertising = advertising;
 	}
 
+	public Stock getCurrentStock() {
+		return currentStock;
+	}
+
+	public void setCurrentStock(Stock currentStock) {
+		this.currentStock = currentStock;
+	}
+
+	
 	
 	
 	

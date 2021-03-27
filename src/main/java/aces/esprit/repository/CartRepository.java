@@ -32,6 +32,16 @@ public interface CartRepository extends CrudRepository<Cart, Integer>{
 	@Query("select c from Cart c where c.client =:client and c.commande = null")
 	List<Cart> findByClientWithoutCommande(@Param("client") User client);
 	
+	@Transactional
+	@Modifying
+	@Query("delete Cart c where c.produit =:produit and c.commande = null")
+	void deleteByProduitWithoutCommande(@Param("produit") Product produit);
+	
+	@Transactional
+	@Modifying
+	@Query("delete Cart c where c.quantite>:qte and c.produit=:produit and c.commande is null")
+	void deleteBiggerThanStock(@Param("qte") int quantite, @Param("produit") Product produit);
+	
 	
 	@Transactional
 	@Modifying

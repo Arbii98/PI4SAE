@@ -40,7 +40,6 @@ public class Cart implements Serializable {
 	
 	private float total;
 	
-	
 	public float getTotal() {
 		return total;
 	}
@@ -128,7 +127,6 @@ public class Cart implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	
 	
 	
 	

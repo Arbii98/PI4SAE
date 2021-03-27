@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +28,7 @@ public class Stock  implements Serializable {
 	
 	private float quantite;
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_produit")
 	private Product produit;
 	
@@ -37,6 +40,18 @@ public class Stock  implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateAchat;
+	
+	@Enumerated(EnumType.STRING)
+	private StockStatus etat;
+	
+
+	public StockStatus getEtat() {
+		return etat;
+	}
+
+	public void setEtat(StockStatus etat) {
+		this.etat = etat;
+	}
 
 	public int getId() {
 		return id;

@@ -15,5 +15,6 @@ public interface IProductService {
 	void deleteAllProducts();
 	public void affectProductToCategory(int idProd, int idCat);
 	public List<String> getAllProductsNamesByCategory(int idCat);
+	
 
 }

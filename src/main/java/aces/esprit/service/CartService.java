@@ -9,6 +9,7 @@ import aces.esprit.entity.Product;
 import aces.esprit.entity.User;
 import aces.esprit.repository.CartRepository;
 import aces.esprit.repository.ProductRepository;
+import aces.esprit.repository.StockRepository;
 import aces.esprit.repository.UserRepository;
 
 import java.util.Date;
@@ -24,6 +25,8 @@ public class CartService implements ICartService{
 	ProductRepository pr;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	StockService ss;
 	
 	
 
@@ -43,8 +46,12 @@ public class CartService implements ICartService{
 		if(liste.size()>0)
 		{
 			liste.get(0).setQuantite(liste.get(0).getQuantite()+cart.getQuantite());
-			liste.get(0).setTotal(liste.get(0).getQuantite()*liste.get(0).getProduit().getPriceProduct());
+			if(liste.get(0).getQuantite()>ss.getQuantiteRestante(liste.get(0).getProduit().getCurrentStock().getId()))
+			{
+				liste.get(0).setQuantite(ss.getQuantiteRestante(liste.get(0).getProduit().getCurrentStock().getId()));
+			}
 			
+			liste.get(0).setTotal(liste.get(0).getQuantite()*liste.get(0).getProduit().getPriceProduct());
 			liste.get(0).setDateCreation(date);
 			cr.save(liste.get(0));
 			return liste.get(0);
@@ -53,7 +60,13 @@ public class CartService implements ICartService{
 		{
  			Product prod = (Product) pr.findById(cart.getProduit().getIdProduct()).orElse(null);
 			cart.setProduit(prod);
+			if(cart.getQuantite()>ss.getQuantiteRestante(prod.getCurrentStock().getId()))
+			{
+				cart.setQuantite(ss.getQuantiteRestante(prod.getCurrentStock().getId()));
+				
+			}
 			cart.setTotal(cart.getProduit().getPriceProduct()*cart.getQuantite());
+			
 			cr.save(cart);
 			return cart;
 		}
@@ -124,6 +137,21 @@ public class CartService implements ICartService{
 	@Override
 	public void deleteUnusedCarts() {
 		cr.DeleteOldUnusedCarts();
+		
+	}
+
+
+
+	@Override
+	public void deleteCartsBecauseStock(Product produit) {
+		cr.deleteByProduitWithoutCommande(produit);
+	}
+
+
+
+	@Override
+	public void deleteBiggerThanStock(int qte,Product produit) {
+		cr.deleteBiggerThanStock(qte,produit);
 		
 	}
 	
