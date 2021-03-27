@@ -14,6 +14,12 @@ import aces.esprit.entity.Delivery;
 import aces.esprit.service.DeliveryService;
 
 
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.sms.MessageStatus;
+import com.nexmo.client.sms.SmsSubmissionResponse;
+import com.nexmo.client.sms.messages.TextMessage;
+
+
 @RestController
 public class DeliveryController {
 	
@@ -23,7 +29,37 @@ public class DeliveryController {
 	@PostMapping("/addDelivery")
 	@ResponseBody
 	public Delivery addDelivery(@RequestBody Delivery d ) {
-		return ds.addDelivery(d);
+		
+		Delivery addedDelivery = ds.addDelivery(d);
+		
+		String msg = "Votre livraison a été ajoutée avec succes, vous pouvez suivre votre livraison sur ce lien : "
+				+ "http://localhost:8081/SpringMVC/servlet/getDeliveryStatus/";
+		msg = msg+d.getId();
+		
+		NexmoClient client = NexmoClient.builder().apiKey("2a815647").apiSecret("AFM0bqq8YawybYOD").build();
+		  TextMessage message = new TextMessage("Livraison",
+		                   "+21693051543",
+		                    msg
+		            );
+		  
+		  try {
+			  SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+			  if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+			    System.out.println("Message sent successfully.");
+			} else {
+			    System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+			}
+		  }
+		  catch(Exception e) {}
+		
+		
+		
+		
+		
+		
+		
+		
+		return addedDelivery;
 	}
 	
 	
@@ -86,6 +122,12 @@ public class DeliveryController {
 	@ResponseBody
 	public long getTempsAttenteMoyen(){
 		return ds.getTempsAttenteMoyen();
+	}
+	
+	@GetMapping("/getDeliveryStatus/{idDelivery}")
+	@ResponseBody
+	public String getDeliveryStatus(@PathVariable("idDelivery") int idDelivery){
+		return ds.getDeliveryStatus(idDelivery);
 	}
 	
 	
