@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,19 +25,23 @@ public class Publication implements Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPub;
+	
 	@NotEmpty(message = "Please provide a Title")
 	private String title;
+	
 	@NotEmpty(message = "Please provide a description for your Publication")
 	private String description;
-	@Past
+	
+	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateCreation;
 
 	@OneToMany(mappedBy = "publication")
 	private List<Comment> comments;
 
-	@OneToMany(mappedBy = "pub")
+	@OneToMany(mappedBy = "pub", fetch = FetchType.EAGER)
 	private List<RatingPub> ratPub;
 
 	public List<RatingPub> getRatPub() {
@@ -102,13 +109,14 @@ public class Publication implements Serializable {
 		this.description = description;
 		this.dateCreation = dateCreation;
 	}
-	public Publication(int idPub,String title, String description, Date dateCreation) {
+
+	public Publication(int idPub, String title, String description, Date dateCreation) {
 		super();
 		this.idPub = idPub;
 		this.title = title;
 		this.description = description;
 		this.dateCreation = dateCreation;
-	
+
 	}
 
 	public Publication() {

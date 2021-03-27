@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import aces.esprit.entity.Publication;
@@ -60,7 +61,7 @@ public class PublicationController {
 		return publicationService.getAllPublishByTopRating();
 	}
 	@GetMapping(value = "/getscann/{idPub}")
-	public Map<String, Integer> IAScanner(@PathVariable int idPub){
+	public Map<String, Float> IAScanner(@PathVariable int idPub){
 		return publicationService.IAScanner(idPub);
 		
 	}
@@ -69,6 +70,17 @@ public class PublicationController {
 		return publicationService.getAllPubByUser(idUser);
 		
 	}
+	@GetMapping(value = "/getpubTitle/{title}")
+	public Publication getByTitle(@PathVariable String title){
+		return publicationService.getByTitle(title);
+		
+	}
+	@GetMapping("/pub")
+	public ResponseEntity<Map<String, Object>> getPub(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		return new ResponseEntity<>(publicationService.getPub(page, size), HttpStatus.OK);
+	}
+
 	
 
 	

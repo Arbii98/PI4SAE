@@ -6,13 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aces.esprit.entity.Advertising;
+import aces.esprit.entity.GenderUser;
+import aces.esprit.entity.User;
 import aces.esprit.repository.AdvertisingRepository;
+import aces.esprit.repository.UserRepository;
 
 @Service
 public class AdvertisingService implements IAdvertisingService {
 
 	@Autowired
 	AdvertisingRepository advertisingRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	public AdvertisingService() {
 	}
@@ -54,6 +60,23 @@ public class AdvertisingService implements IAdvertisingService {
 	public void deleteAllAdvertisings() {
 		advertisingRepository.deleteAll();
 
+	}
+	@Override
+	public int getnbrViewHomme(int idAd, int idU){
+		
+		Advertising ad = advertisingRepository.findById(idAd).get();
+		User user = userRepository.findById(idU).get();
+		
+		int a = 0;
+		if(user.getGender() == GenderUser.MAN){
+			a = a + 1;
+			a = ad.getNbrFinalViewsAd() + 1;
+			ad.setNbrFinalViewsAd(a);
+		}
+		
+		
+		advertisingRepository.save(ad);
+		return a;
 	}
 
 }

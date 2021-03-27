@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -21,7 +22,7 @@ public class FilterBW {
 			String line = "";
 			int counter = 0;
 			while ((line = reader.readLine()) != null) {
-				counter++;
+				counter=counter+1;
 				String[] content = null;
 				try {
 					content = line.split(",");
@@ -29,22 +30,22 @@ public class FilterBW {
 						continue;
 					}
 					String word = content[0];
-					String[] ignore_in_combination_with_words = new String[] {};
+					String[] ignoreInCombinationWithWords = new String[] {};
 					if (content.length > 1) {
-						ignore_in_combination_with_words = content[1].split("_");
+						ignoreInCombinationWithWords = content[1].split("_");
 					}
 
 					if (word.length() > largestWordLength) {
 						largestWordLength = word.length();
 					}
-					words.put(word.replaceAll(" ", ""), ignore_in_combination_with_words);
+					words.put(word.replaceAll(" ", ""), ignoreInCombinationWithWords);
 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
 			}
-			System.out.println("Loaded " + counter + " words to filter out");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +60,7 @@ public class FilterBW {
 	 * @param input
 	 * @return
 	 */
-	public static ArrayList<String> badWordsFound(String input) {
+	public static List<String> badWordsFound(String input) {
 		if (input == null) {
 			return new ArrayList<>();
 		}
@@ -105,7 +106,7 @@ public class FilterBW {
 
 	}
 
-	public static ArrayList<String> filterText(String input) {
+	public static List<String> filterText(String input) {
 		return badWordsFound(input);
 	}
 

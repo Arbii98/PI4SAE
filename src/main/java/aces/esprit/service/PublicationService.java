@@ -3,6 +3,8 @@ package aces.esprit.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Pageable;
+
 import aces.esprit.entity.Publication;
 import aces.esprit.entity.RatingPub;
 
@@ -16,9 +18,14 @@ public interface PublicationService {
 
 	Publication getByIdpub(int idPub);
 
+	Publication getByTitle(String title);
+
 	List<Publication> getallpubByTopComment();
-	List<Publication> getAllPub();
 	
+	Map<String, Object> getPub(int page, int size);
+
+	List<Publication> getAllPub();
+
 	List<Publication> getAllPublishByTopRating();
 
 	RatingPub affectRatForPub(RatingPub ratp, int idUser, int idPub);
@@ -27,13 +34,8 @@ public interface PublicationService {
 
 	void archAutoPub();
 
-	void pubRedondant(Publication pub, int idPub);
-	
-	Map<String, Integer> IAScanner(int idPub);
-	
+	Map<String, Float> IAScanner(int idPub);
+
 	List<Publication> getAllPubByUser(int idUser);
-	
 
-
-	
 }

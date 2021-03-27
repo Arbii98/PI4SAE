@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -29,9 +31,29 @@ public class User implements Serializable {
 	private int id;
 
 	private int banned;
+	@Enumerated(EnumType.STRING)
+	private GenderUser gender; 
+	
+	private int age;
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	public int getBanned() {
 		return banned;
+	}
+
+	public GenderUser getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderUser gender) {
+		this.gender = gender;
 	}
 
 	public void setBanned(int banned) {

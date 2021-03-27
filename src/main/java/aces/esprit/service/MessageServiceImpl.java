@@ -13,19 +13,18 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public void addChat(Message message, int idUser) {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void updateChat(Message message, int idUser) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void deleteChat(int idMsg) {
-		// TODO Auto-generated method stub
+
 
 	}
 
