@@ -96,6 +96,12 @@ public class AdvertisingController {
 
 	}
 	
+	@GetMapping(value = "nbrh/{idAdvertising}/{idUser}")
+	@ResponseBody
+	public int nbr(@PathVariable("idAdvertising") int idAd, @PathVariable("idUser") int idU) {
+		return iAdvertisingService.getnbrViewHomme(idAd, idU);
+	}
+	
 	
 	
 

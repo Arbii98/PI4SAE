@@ -12,5 +12,6 @@ public interface IAdvertisingService {
 	void updateAdvertising(Advertising advertising, int idAd);
 	void deleteAdvertisingById(int id);
 	void deleteAllAdvertisings();
+	int getnbrViewHomme(int idAd, int idU);
 
 }

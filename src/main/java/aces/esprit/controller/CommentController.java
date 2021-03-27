@@ -1,7 +1,5 @@
 package aces.esprit.controller;
 
-
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import aces.esprit.entity.Comment;
-import aces.esprit.entity.Publication;
 import aces.esprit.service.CommentService;
 
 @RestController
@@ -29,9 +26,9 @@ public class CommentController {
 	CommentService commentService;
 
 	@PostMapping
-	public ResponseEntity<Void> addComment(@Valid @RequestBody Comment com) {
+	public ResponseEntity<Void> addComment(@Valid @RequestBody Comment comment) {
 
-		if (commentService.addComment(com) != null)
+		if (commentService.addComment(comment) != null)
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -39,18 +36,18 @@ public class CommentController {
 	}
 
 	@PutMapping("{idPub}")
-	public void updateComment(@RequestBody Comment com, @RequestBody String description) {
-		commentService.updateComment(com, description);
+	public void updateComment(@RequestBody Comment comment, @RequestBody String description) {
+		commentService.updateComment(comment, description);
 	}
 
 	@GetMapping("{idPub}")
 	public List<Comment> getCommentByIdPublication(@PathVariable int idPub) {
 		return commentService.getCommentByIdPublication(idPub);
 	}
+
 	@GetMapping(value = "/getnomb/{idPub}")
 	public Long countComment(@PathVariable int idPub) {
 		return commentService.countComment(idPub);
 	}
-	
 
 }
