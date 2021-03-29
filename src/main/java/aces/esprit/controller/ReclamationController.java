@@ -37,5 +37,45 @@ public class ReclamationController {
 		return rs.addReclamation(reclamation);
 		
 	}
+	
+	
+	@GetMapping("/getAllReclamations")
+	@ResponseBody
+	public List<Reclamation> getAllReclamations() {
+		return rs.getAllReclamations();
+		
+	}
+
+	
+	
+	@GetMapping("/getReclamationsTraitees")
+	@ResponseBody
+	public List<Reclamation> getReclamationsTraitees() {
+		return rs.getReclamationsTraitees();
+		
+	}
+	
+	@GetMapping("/getReclamationsNonTraitees")
+	@ResponseBody
+	public List<Reclamation> getReclamationsNonTraitees() {
+		return rs.getReclamationsNonTraitees();
+		
+	}
+	
+	@GetMapping("/getReclamationsEnCours")
+	@ResponseBody
+	public List<Reclamation> getReclamationsEnCours() {
+		return rs.getReclamationsEnCours();
+		
+	}
+	
+	@GetMapping("/getReclamationsByClient/{idClient}")
+	@ResponseBody
+	public List<Reclamation> getReclamationsByClient(@PathVariable("idClient") int idClient) {
+		return rs.getReclamationsByClient(idClient);
+		
+	}
+	
+	
 
 }

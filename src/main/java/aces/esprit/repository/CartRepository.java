@@ -17,7 +17,12 @@ import aces.esprit.entity.User;
 @Repository
 public interface CartRepository extends CrudRepository<Cart, Integer>{
 
+	@Query(value="SELECT sum(c.total) as somme,pr.name FROM cart c join product pr on c.produit_id=pr.id_product where  c.commande_id is not null group by pr.id_product ",nativeQuery = true)
+	List<Object[]> GetRepartitionRevenus();
 	
+	
+	@Query(value="SELECT sum(c.total) as somme,u.id FROM cart c join user u on c.client_id=u.id where  c.commande_id is not null group by u.id ",nativeQuery = true)
+	List<Object[]> GetClientsFideles();
 	
 	@Query("select c from Cart c where c.client =:client and c.produit=:produit and c.commande = null")
 	List<Cart> findByClientAndProduit( @Param("client") User client, @Param("produit")Product produit);
