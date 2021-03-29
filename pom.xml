@@ -18,6 +18,9 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 	<dependencies>
+	
+		
+		
 		<dependency>
 		    <groupId>com.stripe</groupId>
 		    <artifactId>stripe-java</artifactId>
@@ -29,7 +32,7 @@
 		  <artifactId>client</artifactId>
 		  <version>4.2.0</version>
 		</dependency>
-
+		
 		<dependency>
         	<groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
