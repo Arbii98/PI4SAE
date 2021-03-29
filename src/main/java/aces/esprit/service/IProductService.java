@@ -25,9 +25,7 @@ public interface IProductService {
 	void deleteAllProducts();
 	public void affectProductToCategory(int idProd, int idCat);
 	public List<String> getAllProductsNamesByCategory(int idCat);
-<<<<<<< Updated upstream
-	
-=======
+
 	int getNbrProducts();
 	List<Product> getNewProducts();
 	String readAndCheckImage(String path) throws FileNotFoundException, IOException, NotFoundException, ChecksumException, FormatException;
@@ -39,7 +37,6 @@ public interface IProductService {
 	byte[] genrateAndDownloadQRCode(String text, int width, int height, String filePath) throws Exception;
 	byte[] getBarCodeImage(String text, int width, int height, String filePath) throws Exception;
 	List<Product> RecommendedProduct(int id);
->>>>>>> Stashed changes
 
 	Product addNewProduct(int idProd, String name, String imgNameBarcode, String barcode, boolean generateBarcode)
 			throws Exception;

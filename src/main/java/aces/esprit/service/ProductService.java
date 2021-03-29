@@ -238,9 +238,7 @@ public class ProductService implements IProductService {
 		return prodNames;
 	}
 
-<<<<<<< Updated upstream
-	
-=======
+
 	public List<Product> getNewProducts(){
 				
 		Date dt1 = new Date();
@@ -436,6 +434,6 @@ public class ProductService implements IProductService {
 
 
 
->>>>>>> Stashed changes
+
 
 }

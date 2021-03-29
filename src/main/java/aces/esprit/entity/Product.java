@@ -235,7 +235,6 @@ public class Product implements Serializable{
 		this.advertising = advertising;
 	}
 
-<<<<<<< Updated upstream
 	public Stock getCurrentStock() {
 		return currentStock;
 	}
@@ -245,7 +244,6 @@ public class Product implements Serializable{
 	}
 
 	
-=======
 	public List<LikeProduct> getLikeProducts() {
 		return likeProducts;
 	}
@@ -302,7 +300,6 @@ public class Product implements Serializable{
 		this.qr = qr;
 	}
 
->>>>>>> Stashed changes
 	
 	
 	

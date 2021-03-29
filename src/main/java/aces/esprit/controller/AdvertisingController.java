@@ -102,20 +102,18 @@ public class AdvertisingController {
 
 	}
 	
-<<<<<<< Updated upstream
+
 	@GetMapping(value = "nbrh/{idAdvertising}/{idUser}")
 	@ResponseBody
 	public int nbr(@PathVariable("idAdvertising") int idAd, @PathVariable("idUser") int idU) {
 		return iAdvertisingService.getnbrViewHomme(idAd, idU);
 	}
 	
-=======
 	/*@GetMapping(value = "nbr/{idAdvertising}")
 	@ResponseBody
 	public int nbr(@PathVariable("idAdvertising") int idAd) {
 		return iAdvertisingService.getnbrViewPerAd(idAd);
 	}*/
->>>>>>> Stashed changes
 	
 	@GetMapping(value = "nbr/{idAdvertising}")
 	@ResponseBody
