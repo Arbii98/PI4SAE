@@ -3,24 +3,31 @@ package aces.esprit.entity;
 import java.io.Serializable;
 import java.util.List;
 
+<<<<<<< Updated upstream
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
+=======
+import javax.persistence.Column;
+>>>>>>> Stashed changes
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+<<<<<<< Updated upstream
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
 @DiscriminatorValue("User")
 public class User implements Serializable {
+=======
+public class User implements Serializable{
+	
+>>>>>>> Stashed changes
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", messagesSent=" + messagesSent + ", messagesReceived=" + messagesReceived
@@ -35,6 +42,13 @@ public class User implements Serializable {
 	private GenderUser gender; 
 	
 	private int age;
+<<<<<<< Updated upstream
+=======
+	
+	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
+	private GenderUser gender;
+>>>>>>> Stashed changes
 
 	public int getAge() {
 		return age;
@@ -92,6 +106,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "userp", cascade = CascadeType.REMOVE)
 	List<Publication> publications;
 
+<<<<<<< Updated upstream
 	public List<Message> getMessagesSent() {
 		return messagesSent;
 	}
@@ -126,5 +141,36 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "client")
 	private List<Cart> carts;
+=======
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private List<LikeProduct> likeProducts;
+
+
+
+	public List<LikeProduct> getLikeProducts() {
+		return likeProducts;
+	}
+
+	public void setLikeProducts(List<LikeProduct> likeProducts) {
+		this.likeProducts = likeProducts;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public GenderUser getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderUser gender) {
+		this.gender = gender;
+	}
+>>>>>>> Stashed changes
 
 }

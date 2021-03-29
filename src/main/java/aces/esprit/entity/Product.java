@@ -3,9 +3,12 @@ package aces.esprit.entity;
 import java.io.Serializable;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product implements Serializable{
@@ -37,18 +42,42 @@ public class Product implements Serializable{
 	@Column(name = "price")
 	private float priceProduct;
 	
-	@Column(name = "date")
+	@Column(name = "dateCreation")
 	@Temporal(TemporalType.DATE)
 	private Date dateCreationProduct;
 	
+	@Column(name = "dateEndNew")
+	@Temporal(TemporalType.DATE)
+	private Date dateEndNewProduct;
+	
 	@Column(name = "image")
 	private String imageFileNameProduct;
+	
+	@Column(name = "imageBarcode")
+	private String imageBarcodeFileNameProduct;
 	
 	@Column(name = "video")
 	private String videoFileNameProduct;
 	
 	@Column(name = "barcode")
-	private int barcodeProduct;
+	private String barcodeProduct;
+	
+	@Column(name = "qrCodeImage")
+	private String qrCodeImageProduct;
+	
+	@Column(name = "qr")
+	private byte[] qr;
+	
+	@Column(name = "generateBarcode")
+	private boolean generateBarcode;
+	
+	@Column(name = "age")
+	@Enumerated(EnumType.STRING)
+	private AgeRecommandationProduct age;
+	
+	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
+	private GenderRecommandation gender;
 	
 	@ManyToOne
 	@JoinColumn(name = "fkIdCategory")
@@ -57,6 +86,10 @@ public class Product implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "fkIdAd")
 	private Advertising advertising;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private List<LikeProduct> likeProducts;
 	
 	
 	//@OneToOne(mappedBy="produit")
@@ -85,31 +118,27 @@ public class Product implements Serializable{
 		this.rayon = rayon;
 	}
 
+	
+
 	public Product(int idProduct, String nameProduct, String descriptionProduct, float priceProduct,
-			Date dateCreationProduct, String imageFileNameProduct, String videoFileNameProduct, int barcodeProduct,
-			Category category) {
+			Date dateCreationProduct, Date dateEndNewProduct, String imageFileNameProduct,
+			String imageBarcodeFileNameProduct, String videoFileNameProduct, String barcodeProduct, Category category,
+			Advertising advertising, List<LikeProduct> likeProducts, Rayon rayon) {
 		super();
 		this.idProduct = idProduct;
 		this.nameProduct = nameProduct;
 		this.descriptionProduct = descriptionProduct;
 		this.priceProduct = priceProduct;
 		this.dateCreationProduct = dateCreationProduct;
+		this.dateEndNewProduct = dateEndNewProduct;
 		this.imageFileNameProduct = imageFileNameProduct;
+		this.imageBarcodeFileNameProduct = imageBarcodeFileNameProduct;
 		this.videoFileNameProduct = videoFileNameProduct;
 		this.barcodeProduct = barcodeProduct;
 		this.category = category;
-	}
-
-	public Product(int idProduct, String nameProduct, String descriptionProduct, float priceProduct, Date dateCreationProduct, String imageFileNameProduct, String videoFileNameProduct, int barcodeProduct) {
-		super();
-		this.idProduct = idProduct;
-		this.nameProduct = nameProduct;
-		this.descriptionProduct = descriptionProduct;
-		this.priceProduct = priceProduct;
-		this.dateCreationProduct = dateCreationProduct;
-		this.imageFileNameProduct = imageFileNameProduct;
-		this.videoFileNameProduct = videoFileNameProduct;
-		this.barcodeProduct = barcodeProduct;
+		this.advertising = advertising;
+		this.likeProducts = likeProducts;
+		this.rayon = rayon;
 	}
 
 	@Override
@@ -176,11 +205,13 @@ public class Product implements Serializable{
 		this.videoFileNameProduct = videoFileNameProduct;
 	}
 
-	public int getBarcodeProduct() {
+
+
+	public String getBarcodeProduct() {
 		return barcodeProduct;
 	}
 
-	public void setBarcodeProduct(int barcodeProduct) {
+	public void setBarcodeProduct(String barcodeProduct) {
 		this.barcodeProduct = barcodeProduct;
 	}
 
@@ -204,6 +235,7 @@ public class Product implements Serializable{
 		this.advertising = advertising;
 	}
 
+<<<<<<< Updated upstream
 	public Stock getCurrentStock() {
 		return currentStock;
 	}
@@ -213,6 +245,64 @@ public class Product implements Serializable{
 	}
 
 	
+=======
+	public List<LikeProduct> getLikeProducts() {
+		return likeProducts;
+	}
+
+	public void setLikeProducts(List<LikeProduct> likeProducts) {
+		this.likeProducts = likeProducts;
+	}
+
+	public Date getDateEndNewProduct() {
+		return dateEndNewProduct;
+	}
+
+	public void setDateEndNewProduct(Date dateEndNewProduct) {
+		this.dateEndNewProduct = dateEndNewProduct;
+	}
+
+	public String getImageBarcodeFileNameProduct() {
+		return imageBarcodeFileNameProduct;
+	}
+
+	public void setImageBarcodeFileNameProduct(String imageBarcodeFileNameProduct) {
+		this.imageBarcodeFileNameProduct = imageBarcodeFileNameProduct;
+	}
+
+	public boolean isGenerateBarcode() {
+		return generateBarcode;
+	}
+
+	public void setGenerateBarcode(boolean generateBarcode) {
+		this.generateBarcode = generateBarcode;
+	}
+
+	public String getQrCodeImageProduct() {
+		return qrCodeImageProduct;
+	}
+
+	public void setQrCodeImageProduct(String qrCodeImageProduct) {
+		this.qrCodeImageProduct = qrCodeImageProduct;
+	}
+
+	public AgeRecommandationProduct getAge() {
+		return age;
+	}
+
+	public void setAge(AgeRecommandationProduct age) {
+		this.age = age;
+	}
+
+	public byte[] getQr() {
+		return qr;
+	}
+
+	public void setQr(byte[] qr) {
+		this.qr = qr;
+	}
+
+>>>>>>> Stashed changes
 	
 	
 	
