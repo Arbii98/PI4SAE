@@ -20,6 +20,14 @@ public interface ProductRepository extends CrudRepository<Product, Integer>{
 	
 	@Query("select p from Product p where p.idProduct =:idprod")
 	Product findByIdProduct(@Param("idprod") int idprod);
+	
+	@Query("select count(p.nameProduct) from Product p")
+	int getNbProds();
+	
+	@Query(value="select * from product p where (p.gender = :gen "
+			+ "and p.age = :ag) ",nativeQuery=true)
+	List<Product> RecommendedProducts(@Param("gen") String gender,@Param("ag") String ss);
+
 
 
 }

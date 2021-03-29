@@ -52,5 +52,11 @@ public class CategoryService implements ICategoryService {
 	public void deleteAllCategories() {
 		categoryRepository.deleteAll();
 	}
+	
+	@Override
+	public int getNbrCategories() {
+		return categoryRepository.getNbCategories();
+	}
+	
 
 }

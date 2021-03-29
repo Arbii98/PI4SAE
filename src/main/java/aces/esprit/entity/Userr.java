@@ -1,52 +1,38 @@
 package aces.esprit.entity;
 
 import java.io.Serializable;
-
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.OneToMany;
-import javax.persistence.InheritanceType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE")
-@DiscriminatorValue("User")
-public class User implements Serializable {
-
+public class Userr implements Serializable{
 	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", messagesSent=" + messagesSent + ", messagesReceived=" + messagesReceived
 				+ ", carts=" + carts + "]";
 	}
-
 	@Id
 	private int id;
+	
+	private int age;
+	
+	@Column(name = "gender")
+	@Enumerated(EnumType.STRING)
+	private GenderUser gender;
 
-	private int banned;
-
-
-
-	public int getBanned() {
-		return banned;
-	}
-
-
-
-	public void setBanned(int banned) {
-		this.banned = banned;
-	}
+	@Column(name = "interests")
+	@Enumerated(EnumType.STRING)
+	private InterestsRecommandation interests;
 
 	public int getId() {
 		return id;
@@ -56,14 +42,14 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public User(int id) {
+	public Userr(int id) {
+		super();
 		this.id = id;
 	}
 
-	public User() {
+	public Userr() {
 		super();
 	}
-
 	@OneToMany(mappedBy = "sender")
 	@JsonIgnore
 	private List<Message> messagesSent;
@@ -71,14 +57,54 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "receiver")
 	@JsonIgnore
 	private List<Message> messagesReceived;
-
+	
 	@OneToMany(mappedBy = "users")
 	@JsonIgnore
 	private List<RatingComment> rating;
+	
+	
+	
+	@OneToMany(mappedBy="client")
+	private List<Cart> carts;
+
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "userp", cascade = CascadeType.REMOVE)
-	List<Publication> publications;
+	@OneToMany(mappedBy = "product")
+	private List<LikeProduct> likeProducts;
+
+
+
+	public List<LikeProduct> getLikeProducts() {
+		return likeProducts;
+	}
+
+	public void setLikeProducts(List<LikeProduct> likeProducts) {
+		this.likeProducts = likeProducts;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public GenderUser getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderUser gender) {
+		this.gender = gender;
+	}
+
+	public InterestsRecommandation getInterests() {
+		return interests;
+	}
+
+	public void setInterests(InterestsRecommandation interests) {
+		this.interests = interests;
+	}
 
 	public List<Message> getMessagesSent() {
 		return messagesSent;
@@ -104,31 +130,14 @@ public class User implements Serializable {
 		this.rating = rating;
 	}
 
-	public List<Publication> getPublications() {
-		return publications;
+	public List<Cart> getCarts() {
+		return carts;
 	}
 
-	public void setPublications(List<Publication> publications) {
-		this.publications = publications;
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
-	@OneToMany(mappedBy = "client")
-	private List<Cart> carts;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "product")
-	private List<LikeProduct> likeProducts;
-
-
-
-	public List<LikeProduct> getLikeProducts() {
-		return likeProducts;
-	}
-
-	public void setLikeProducts(List<LikeProduct> likeProducts) {
-		this.likeProducts = likeProducts;
-	}
-
-
+	
 
 }

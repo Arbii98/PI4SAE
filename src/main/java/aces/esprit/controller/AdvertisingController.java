@@ -71,7 +71,7 @@ public class AdvertisingController {
 	/*
 	 * http://localhost:8081/SpringMVC/servlet/updateAd/1
 	 */
-	@PutMapping("{idAdvertising}")
+	@PutMapping(value = "updateAd/{idAdvertising}")
 	public void updateAdvertising(@RequestBody Advertising advertising, @PathVariable int idAd) {
 		iAdvertisingService.updateAdvertising(advertising, idAd);
 	}
@@ -85,6 +85,12 @@ public class AdvertisingController {
 		iAdvertisingService.deleteAdvertisingById(idAd);
 
 	}
+	
+	@GetMapping(value = "/getNbrAds")
+	@ResponseBody
+	public int getNbProds() {
+		return iAdvertisingService.getNbrAdvertising();
+	}
 
 	/*
 	 * http://localhost:8081/SpringMVC/servlet/deleteAllAds
@@ -96,13 +102,23 @@ public class AdvertisingController {
 
 	}
 	
+
 	@GetMapping(value = "nbrh/{idAdvertising}/{idUser}")
 	@ResponseBody
 	public int nbr(@PathVariable("idAdvertising") int idAd, @PathVariable("idUser") int idU) {
 		return iAdvertisingService.getnbrViewHomme(idAd, idU);
 	}
 	
+	/*@GetMapping(value = "nbr/{idAdvertising}")
+	@ResponseBody
+	public int nbr(@PathVariable("idAdvertising") int idAd) {
+		return iAdvertisingService.getnbrViewPerAd(idAd);
+	}*/
 	
-	
+	@GetMapping(value = "nbr/{idAdvertising}")
+	@ResponseBody
+	public float nbr(@PathVariable("idAdvertising") int idAd) {
+		return iAdvertisingService.getCostAdvertising(idAd);
+	}
 
 }

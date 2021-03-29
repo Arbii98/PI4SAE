@@ -66,7 +66,7 @@ public class CategoryController {
 	/*
 	 * http://localhost:8081/SpringMVC/servlet/updateCategory/1
 	 */
-	@PutMapping("{idCat}")
+	@PutMapping(value = "updateCategory/{idCat}")
 	public void updateCategory(@RequestBody Category category, @PathVariable int idCat) {
 		iCategoryService.updateCategory(category, idCat);
 	}
@@ -89,5 +89,11 @@ public class CategoryController {
 	public void deleteAllCategories() {
 		iCategoryService.deleteAllCategories();
 
+	}
+	
+	@GetMapping(value = "/getNbrCategories")
+	@ResponseBody
+	public int getNbCategories() {
+		return iCategoryService.getNbrCategories();
 	}
 }
