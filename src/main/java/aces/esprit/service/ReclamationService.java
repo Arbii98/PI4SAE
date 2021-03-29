@@ -2,10 +2,15 @@ package aces.esprit.service;
 
 
 import java.util.*;
+import aces.esprit.entity.User;
+import aces.esprit.entity.Commande;
 import aces.esprit.entity.Reclamation;
-import aces.esprit.entity.ReclamationStatus;
 
+import aces.esprit.entity.ReclamationStatus;
+import aces.esprit.repository.CommandeRepository;
 import aces.esprit.repository.ReclamationRepository;
+import aces.esprit.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +20,12 @@ public class ReclamationService {
 	
 	@Autowired
 	ReclamationRepository rr;
+	
+	@Autowired
+	UserRepository ur;
+	
+	@Autowired
+	CommandeRepository cr;
 	
 	public Reclamation addReclamation(Reclamation reclamation)
 	{
@@ -26,5 +37,63 @@ public class ReclamationService {
 		
 	}
 	
+	
+	public List<Reclamation> getAllReclamations()
+	{
+		List<Reclamation> myList = (List<Reclamation>) rr.findAll();
+		for(Reclamation rec : myList)
+		{
+			rec.getLivraison().setCommande(null);
+		}
+		return myList;
+	}
+	
+	
+	public List<Reclamation> getReclamationsTraitees()
+	{
+		List<Reclamation> myList = rr.findAllTraitees();
+		for(Reclamation rec : myList)
+		{
+			rec.getLivraison().setCommande(null);
+		}
+		return myList;
+		
+	}
+	
+	public List<Reclamation> getReclamationsNonTraitees()
+	{
+		List<Reclamation> myList = rr.findAllNonTraitees();
+		for(Reclamation rec : myList)
+		{
+			rec.getLivraison().setCommande(null);
+		}
+		return myList;
+	}
+	
+	public List<Reclamation> getReclamationsEnCours()
+	{
+		List<Reclamation> myList = rr.findAllEnCours();
+		for(Reclamation rec : myList)
+		{
+			rec.getLivraison().setCommande(null);
+		}
+		return myList;
+	}
 
+	public List<Reclamation> getReclamationsByClient(int idClient)
+	{
+		List<Reclamation> first = (List<Reclamation>) rr.findAll();
+		List<Reclamation> second = new ArrayList<Reclamation>();
+		for(Reclamation rec : first)
+		{
+			if(rec.getLivraison().getCommande().getCarts().get(0).getClient().getId()==idClient)
+			{
+				rec.getLivraison().setCommande(null);
+				second.add(rec);
+				
+			}
+		}
+		
+		return second;
+	}
 }

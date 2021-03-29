@@ -15,4 +15,7 @@ public interface ICartService {
 	void deleteUnusedCarts();
 	void deleteCartsBecauseStock(Product produit);
 	void deleteBiggerThanStock(int qte,Product produit);
+	List<Object[]> GetRepartitionRevenus();
+	List<Object[]> GetClientsFideles();
+	
 }

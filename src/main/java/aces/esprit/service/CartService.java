@@ -154,6 +154,21 @@ public class CartService implements ICartService{
 		cr.deleteBiggerThanStock(qte,produit);
 		
 	}
+
+
+
+	@Override
+	public List<Object[]> GetRepartitionRevenus() {
+
+		return cr.GetRepartitionRevenus();
+	}
+
+
+
+	@Override
+	public List<Object[]> GetClientsFideles() {
+		return cr.GetClientsFideles();
+	}
 	
 	
 	

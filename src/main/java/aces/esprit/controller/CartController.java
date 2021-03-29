@@ -41,6 +41,18 @@ public class CartController {
 		return cs.getCarts();
 	}
 	
+	@GetMapping(value = "/GetClientsFideles")
+	@ResponseBody
+	public List<Object[]> GetClientsFideles() {
+		return cs.GetClientsFideles();
+	}
+	
+	@GetMapping(value = "/GetRepartitionRevenus")
+	@ResponseBody
+	public List<Object[]> GetRepartitionRevenus() {
+		return cs.GetRepartitionRevenus();
+	}
+	
 	
 	@GetMapping(value = "/GetCurrentCartsForClient/{idclient}")
 	@ResponseBody

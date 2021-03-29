@@ -5,10 +5,14 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stripe.Stripe;
+import com.stripe.model.Charge;
+
 import aces.esprit.entity.Cart;
 import aces.esprit.entity.Commande;
 import aces.esprit.entity.User;
 import aces.esprit.entity.OrderStatus;
+import aces.esprit.entity.StripeRequest;
 import aces.esprit.repository.CartRepository;
 import aces.esprit.repository.CommandeRepository;
 import aces.esprit.repository.UserRepository;
@@ -65,6 +69,39 @@ public class CommandeService implements ICommandeService{
 		 
 		
 		return commande;
+	}
+
+	@Override
+	public Charge chargeNewCard(StripeRequest stripe,int idCommande) {
+		Commande commande = (Commande) cr.findById(idCommande).orElse(null);
+		
+		
+		
+		Stripe.apiKey="sk_test_20u9a1vhbiijZzdUsFvnxgaT00Xr4NPWPh";
+		Map<String, Object> chargeParams = new HashMap<String, Object>();
+        chargeParams.put("amount", (int)(commande.getTotal() * 100));
+        chargeParams.put("currency", stripe.getCurrency());
+        chargeParams.put("source", stripe.getStripeToken());
+        chargeParams.put("description",stripe.getDescription());
+        try
+        {
+        	Charge charge = Charge.create(chargeParams);
+        	commande.setEtat(OrderStatus.Paye);
+        	cr.save(commande);
+        	return charge;
+        }
+        catch(Exception e) {
+        	System.out.println(e.getMessage());
+        }
+        return null;
+	}
+
+	@Override
+	public void marquerPaye(int idCommande) {
+		Commande commande = (Commande) cr.findById(idCommande).orElse(null);
+    	cr.save(commande);
+
+		
 	}
 	
 
