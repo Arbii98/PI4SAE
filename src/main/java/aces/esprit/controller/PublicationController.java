@@ -2,12 +2,16 @@ package aces.esprit.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import aces.esprit.entity.Publication;
+import aces.esprit.service.EmailService;
 import aces.esprit.service.PublicationService;
 
 @RestController
@@ -28,6 +33,8 @@ public class PublicationController {
 
 	@Autowired
 	PublicationService publicationService;
+	@Autowired
+    private EmailService emailService;
 
 	@PostMapping("{userp}")
 	public ResponseEntity<Void> addPublication(@Valid @RequestBody Publication publication, @PathVariable int userp) {
@@ -80,9 +87,21 @@ public class PublicationController {
 			@RequestParam(defaultValue = "10") int size) {
 		return new ResponseEntity<>(publicationService.getPub(page, size), HttpStatus.OK);
 	}
-
+	@GetMapping("/nblikepub/{idPub}")
+	public int nbrLike(@PathVariable int idPub){
+		return publicationService.nbrLike(idPub);
+		
+	}
 	
-
+	@GetMapping("/maxnblikepub")
+	public Publication  maxnblike(){
+		return publicationService.maxnblike();
+		
+	}
+	
+	
+			
+ 
 	
 
 	

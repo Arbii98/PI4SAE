@@ -29,4 +29,7 @@ public interface PublicationRepository extends CrudRepository<Publication, Integ
 	
 	@Query("select p from Publication p order by dateCreation desc")
 	Page<Publication> getPub(Pageable pageable);
+	
+//	@Query(value = "SELECT count(rat) FROM Publication p  where p.idPub=:idPub and p.RatingPub.rat:=rat.LIKE")
+//	int getNbrLikes(@Param("idPub") int idPub);
 }

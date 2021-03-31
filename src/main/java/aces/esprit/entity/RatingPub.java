@@ -3,6 +3,8 @@ package aces.esprit.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,9 +17,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class RatingPub implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private int idRp;
-	@DecimalMax("5.00")
-	private float rat;
+	@Enumerated(EnumType.STRING)
+	private ratPub rat;
 
 	@ManyToOne
 	@JsonIgnore
@@ -39,11 +42,13 @@ public class RatingPub implements Serializable {
 		this.idRp = idRp;
 	}
 
-	public float getRat() {
+
+
+	public ratPub getRat() {
 		return rat;
 	}
 
-	public void setRat(float rat) {
+	public void setRat(ratPub rat) {
 		this.rat = rat;
 	}
 
@@ -63,10 +68,12 @@ public class RatingPub implements Serializable {
 		this.user = user;
 	}
 
-	public RatingPub(int idRp, float rat) {
+	public RatingPub(int idRp, ratPub rat) {
 		super();
 		this.idRp = idRp;
 		this.rat = rat;
 	}
+
+
 
 }
