@@ -28,9 +28,7 @@ public interface ReclamationRepository extends CrudRepository<Reclamation, Integ
 	
 	@Query("select r from Reclamation r where r.etatReclamation='ENCOURS'")
 	List<Reclamation>findAllEnCours();
-	/*
-	@Query("select r from Reclamation r where :client member of r.livraison.commande.carts")
-	List<Reclamation>findByClient(@Param("client") User client);*/
+
 	
 	
 	@Query("select count(r) as count,r.livraison.livreur as livreur from Reclamation r group by r.livraison.livreur")

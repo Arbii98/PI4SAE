@@ -28,7 +28,7 @@ public class DeliveryController {
 	
 	@PostMapping("/addDelivery")
 	@ResponseBody
-	public Delivery addDelivery(@RequestBody Delivery d ) {
+	public void addDelivery(@RequestBody Delivery d ) {
 		
 		Delivery addedDelivery = ds.addDelivery(d);
 		
@@ -36,9 +36,9 @@ public class DeliveryController {
 				+ "http://localhost:8081/SpringMVC/servlet/getDeliveryStatus/";
 		msg = msg+d.getId();
 		
-		NexmoClient client = NexmoClient.builder().apiKey("2a815647").apiSecret("AFM0bqq8YawybYOD").build();
+		NexmoClient client = NexmoClient.builder().apiKey("5cdce3a3").apiSecret("IP6evS236NnBmBfP").build();
 		  TextMessage message = new TextMessage("Livraison",
-		                   "+21693051543",
+		                   "+21628273994",
 		                    msg
 		            );
 		  
@@ -59,7 +59,7 @@ public class DeliveryController {
 		
 		
 		
-		return addedDelivery;
+		//return addedDelivery;
 	}
 	
 	
