@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class Reclamation implements Serializable {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	
 	@OneToOne
@@ -38,11 +38,23 @@ public class Reclamation implements Serializable {
 	@OneToOne(mappedBy="reclamation")
 	private ReponseRec reponseReclamation;
 
-	public long getId() {
+	public Reclamation()
+	{
+		super();
+	}
+	
+	public Reclamation(int id)
+	{
+		super();
+		this.id=id;
+	}
+	
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

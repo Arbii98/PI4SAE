@@ -16,7 +16,10 @@ import aces.esprit.entity.Event;
 @Repository
 public interface EventRepository extends CrudRepository<Event, Integer> {
 	
-	@Query("select e from Event e where e.dateEvent> CURRENT_DATE")
+	@Query("select e from Event e where e.dateEvent>= CURRENT_DATE")
 	List<Event> getUpcomingEvents();
+	
+	@Query("select e from Event e where e.dateEvent = CURRENT_DATE")
+	List<Event> getEventsToday();
 
 }

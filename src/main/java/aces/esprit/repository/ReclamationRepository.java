@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import aces.esprit.entity.Commande;
 import aces.esprit.entity.Reclamation;
+import aces.esprit.entity.ReclamationLivreurStat;
 import aces.esprit.entity.User;
 
 
@@ -31,6 +32,9 @@ public interface ReclamationRepository extends CrudRepository<Reclamation, Integ
 	@Query("select r from Reclamation r where :client member of r.livraison.commande.carts")
 	List<Reclamation>findByClient(@Param("client") User client);*/
 	
+	
+	@Query("select count(r) as count,r.livraison.livreur as livreur from Reclamation r group by r.livraison.livreur")
+	List<ReclamationLivreurStat> getReclamationsByLivreur();
 	
 	
 	

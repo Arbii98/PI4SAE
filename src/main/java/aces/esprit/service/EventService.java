@@ -18,6 +18,9 @@ public class EventService implements IEventService {
 	@Autowired
 	JackpotService js;
 	
+	@Autowired
+	EmailService es;
+	
 	@Override
 	public Event addEvent(Event event) {
 		if(js.getCurrentMontantTotal()>event.getCout())
@@ -48,6 +51,16 @@ public class EventService implements IEventService {
 	@Override
 	public void deleteEvent(int id) {
 		er.deleteById(id);
+	}
+
+	@Override
+	public boolean getEventsToday() {
+		if(er.getEventsToday().size()>0)
+		{
+			es.sendMailEvent("arbisaidi8@gmail.com", "Notification evenement");
+			return true;
+		}
+		return false;
 	}
 	
 	

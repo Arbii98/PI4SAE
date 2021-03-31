@@ -5,7 +5,7 @@ import java.util.*;
 import aces.esprit.entity.User;
 import aces.esprit.entity.Commande;
 import aces.esprit.entity.Reclamation;
-
+import aces.esprit.entity.ReclamationLivreurStat;
 import aces.esprit.entity.ReclamationStatus;
 import aces.esprit.repository.CommandeRepository;
 import aces.esprit.repository.ReclamationRepository;
@@ -96,4 +96,33 @@ public class ReclamationService {
 		
 		return second;
 	}
+	
+	
+	public List<ReclamationLivreurStat> getReclamationsByLivreur()
+	{
+		return rr.getReclamationsByLivreur();
+	}
+	
+	
+	public void marquerEnCours(int idReclamation)
+	{
+		Reclamation rec = (Reclamation) rr.findById(idReclamation).orElse(null);
+		rec.setEtatReclamation(ReclamationStatus.ENCOURS);
+		rr.save(rec);
+	}
+	
+	public void marquerTraitee(int idReclamation)
+	{
+		Reclamation rec = (Reclamation) rr.findById(idReclamation).orElse(null);
+		rec.setEtatReclamation(ReclamationStatus.TRAITEE);
+		rr.save(rec);
+	}
+	
+	public void marquerNonTraitee(int idReclamation)
+	{
+		Reclamation rec = (Reclamation) rr.findById(idReclamation).orElse(null);
+		rec.setEtatReclamation(ReclamationStatus.NONTRAITEE);
+		rr.save(rec);
+	}
+	
 }
