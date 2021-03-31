@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import aces.esprit.entity.Archive;
 import aces.esprit.entity.Category;
+import aces.esprit.service.ArchiveService;
 import aces.esprit.service.ICategoryService;
 
 @RestController
@@ -20,6 +22,9 @@ public class CategoryController {
 
 	@Autowired
 	ICategoryService iCategoryService;
+	
+	@Autowired
+	ArchiveService archiveService;
 
 	public CategoryController() {
 	}
@@ -77,6 +82,8 @@ public class CategoryController {
 	@DeleteMapping("/deleteCategoryById/{idcat}")
 	@ResponseBody
 	public void deleteCategoryById(@PathVariable("idcat") int idCat) {
+		
+		archiveService.addArchive(idCat);
 		iCategoryService.deleteCategoryById(idCat);
 
 	}

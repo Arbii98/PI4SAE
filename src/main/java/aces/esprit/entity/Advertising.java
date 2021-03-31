@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,8 +49,11 @@ public class Advertising implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateEndAd;
 	
-	@Column(name = "initialViewsNumber")
-	private int nbrInitialViewsAd;
+	@Column(name = "viewsMan")
+	private int nbrManViewsAd;
+	
+	@Column(name = "viewsWomen")
+	private int nbrWomenViewsAd;
 	
 	@Column(name = "finalViewsNumber")
 	private int nbrFinalViewsAd;
@@ -59,18 +64,9 @@ public class Advertising implements Serializable{
 	@Column(name = "priceView")
 	private float priceAdPerView;
 	
-	@Column(name = "imagePrice")
-	private float imagePriceAd;
-	
-	@Column(name = "videoPrice")
-	private float videoPriceAd;
-	
-	@Column(name = "type")
-	private String typeAd;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "advertising", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
-	private List<Product> products;
+	@ManyToOne
+	@JoinColumn(name = "fkIdProduct")
+	private Product product;
 
 	public Advertising() {
 		super();
@@ -78,21 +74,17 @@ public class Advertising implements Serializable{
 
 	public Advertising(int idAd, String channelAd, SponsorType sponsorType, Date dateBeginAd, Date dateEndAd,
 			int nbrInitialViewsAd, int nbrFinalViewsAd, float priceAdPerDay, float priceAdPerView, float imagePriceAd,
-			float videoPriceAd, String typeAd, List<Product> products) {
+			float videoPriceAd, String typeAd) {
 		super();
 		this.idAd = idAd;
 		this.channelAd = channelAd;
 		this.sponsorType = sponsorType;
 		this.dateBeginAd = dateBeginAd;
 		this.dateEndAd = dateEndAd;
-		this.nbrInitialViewsAd = nbrInitialViewsAd;
 		this.nbrFinalViewsAd = nbrFinalViewsAd;
 		this.priceAdPerDay = priceAdPerDay;
 		this.priceAdPerView = priceAdPerView;
-		this.imagePriceAd = imagePriceAd;
-		this.videoPriceAd = videoPriceAd;
-		this.typeAd = typeAd;
-		this.products = products;
+
 	}
 
 	public int getIdAd() {
@@ -127,14 +119,6 @@ public class Advertising implements Serializable{
 		this.dateEndAd = dateEndAd;
 	}
 
-	public int getNbrInitialViewsAd() {
-		return nbrInitialViewsAd;
-	}
-
-	public void setNbrInitialViewsAd(int nbrInitialViewsAd) {
-		this.nbrInitialViewsAd = nbrInitialViewsAd;
-	}
-
 	public int getNbrFinalViewsAd() {
 		return nbrFinalViewsAd;
 	}
@@ -143,40 +127,8 @@ public class Advertising implements Serializable{
 		this.nbrFinalViewsAd = nbrFinalViewsAd;
 	}
 
-	public String getTypeAd() {
-		return typeAd;
-	}
-
-	public void setTypeAd(String typeAd) {
-		this.typeAd = typeAd;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public float getImagePriceAd() {
-		return imagePriceAd;
-	}
-
-	public void setImagePriceAd(float imagePriceAd) {
-		this.imagePriceAd = imagePriceAd;
-	}
-
-	public float getVideoPriceAd() {
-		return videoPriceAd;
-	}
-
-	public void setVideoPriceAd(float videoPriceAd) {
-		this.videoPriceAd = videoPriceAd;
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
 	}
 
 	public SponsorType getSponsorType() {
@@ -201,6 +153,30 @@ public class Advertising implements Serializable{
 
 	public void setPriceAdPerView(float priceAdPerView) {
 		this.priceAdPerView = priceAdPerView;
+	}
+
+	public int getNbrManViewsAd() {
+		return nbrManViewsAd;
+	}
+
+	public void setNbrManViewsAd(int nbrManViewsAd) {
+		this.nbrManViewsAd = nbrManViewsAd;
+	}
+
+	public int getNbrWomenViewsAd() {
+		return nbrWomenViewsAd;
+	}
+
+	public void setNbrWomenViewsAd(int nbrWomenViewsAd) {
+		this.nbrWomenViewsAd = nbrWomenViewsAd;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	
 	

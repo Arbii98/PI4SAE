@@ -86,11 +86,11 @@ public class AdvertisingController {
 
 	}
 	
-	@GetMapping(value = "/getNbrAds")
+	/*@GetMapping(value = "/getNbrAds")
 	@ResponseBody
 	public int getNbProds() {
 		return iAdvertisingService.getNbrAdvertising();
-	}
+	}*/
 
 	/*
 	 * http://localhost:8081/SpringMVC/servlet/deleteAllAds
@@ -102,23 +102,46 @@ public class AdvertisingController {
 
 	}
 	
-
-	@GetMapping(value = "nbrh/{idAdvertising}/{idUser}")
+	@GetMapping(value = "nbr/{idAdvertising}/{idUser}")
 	@ResponseBody
-	public int nbr(@PathVariable("idAdvertising") int idAd, @PathVariable("idUser") int idU) {
-		return iAdvertisingService.getnbrViewHomme(idAd, idU);
+	public int nb(@PathVariable("idAdvertising") int idAd, @PathVariable("idUser") int idUser) {
+		return iAdvertisingService.getnbrViewPerAd(idAd, idUser);
 	}
 	
-	/*@GetMapping(value = "nbr/{idAdvertising}")
+	@GetMapping(value = "getCostAdvertising/{idAdvertising}")
 	@ResponseBody
-	public int nbr(@PathVariable("idAdvertising") int idAd) {
-		return iAdvertisingService.getnbrViewPerAd(idAd);
-	}*/
-	
-	@GetMapping(value = "nbr/{idAdvertising}")
-	@ResponseBody
-	public float nbr(@PathVariable("idAdvertising") int idAd) {
+	public float nbrr(@PathVariable("idAdvertising") int idAd) {
 		return iAdvertisingService.getCostAdvertising(idAd);
+	}
+	
+	@GetMapping(value = "/getStat/{idAdvertising}")
+	@ResponseBody
+	public float getStatisticsPricePerAd(@PathVariable("idAdvertising") int idAd) {
+		return iAdvertisingService.getStatisticsPricePerAd(idAd);
+	}
+	
+	@GetMapping(value = "/getDays/{idAdvertising}")
+	@ResponseBody
+	public float getDays(@PathVariable("idAdvertising") int idAd) {
+		return iAdvertisingService.getStatisticsDurationPerAd(idAd);
+	}
+	
+	@GetMapping(value = "/getStatMan/{idAdvertising}")
+	@ResponseBody
+	public float getStatMan(@PathVariable("idAdvertising") int idAd) {
+		return iAdvertisingService.getStatMan(idAd);
+	}
+	
+	@GetMapping(value = "/getStatG")
+	@ResponseBody
+	public float getPrixParEntrepStat() {
+		return iAdvertisingService.getPrixParEntrepStat();
+	}
+	
+	@GetMapping(value = "/getStatG2")
+	@ResponseBody
+	public float getPrixParEntrepStat2() {
+		return iAdvertisingService.getPrixParSocStat();
 	}
 
 }
