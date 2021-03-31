@@ -25,6 +25,9 @@ public class StockService {
 	@Autowired 
 	CartService cs;
 	
+	@Autowired
+	EmailService es;
+	
 	
 	//Verified
 	public void UnaffectProductStock(int idProduct)
@@ -177,6 +180,8 @@ public class StockService {
 				p.setCurrentStock(null);
 				pr.save(p);
 				System.out.println("NO MORE STOCK");
+				//ENVOIE MAIL NO MORE STOCK
+				es.sendMailStock("ahmed.oueslati1@esprit.tn","Stock");
 				return -1;
 			}
 			else

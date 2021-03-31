@@ -19,6 +19,8 @@ public class Rayon implements Serializable {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	private String libelle;
+	
 	@OneToMany(mappedBy="rayon")
 	private List<Product> produits;
 
@@ -37,6 +39,15 @@ public class Rayon implements Serializable {
 	public void setProduits(List<Product> produits) {
 		this.produits = produits;
 	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+	
 	
 	
 
