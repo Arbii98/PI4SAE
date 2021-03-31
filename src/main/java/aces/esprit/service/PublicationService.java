@@ -37,5 +37,10 @@ public interface PublicationService {
 	Map<String, Float> IAScanner(int idPub);
 
 	List<Publication> getAllPubByUser(int idUser);
+	
+	int nbrLike (int idPub);
+	int nbrDislike (int idPub);
+	
+	public Publication maxnblike();
 
 }

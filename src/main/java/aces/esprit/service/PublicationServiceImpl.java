@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +42,9 @@ public class PublicationServiceImpl implements PublicationService {
 	RatingPubRepository ratingPubRepository;
 	@Autowired
 	CommentRepository commentrepository;
+	@Autowired
+    private EmailService emailService;
+
 
 	@Override
 	public Publication addPublication(Publication pub, int idUser) {
@@ -156,6 +163,30 @@ public class PublicationServiceImpl implements PublicationService {
 			map.put("positive", (float) this.positive(sh) / (this.positive(sh) - this.negative(sh)));
 
 			map.put("negative", -(float) this.negative(sh) / (this.positive(sh) - this.negative(sh)));
+			
+			if( (float) this.positive(sh) / (this.positive(sh) - this.negative(sh))< (-(float) this.negative(sh) / (this.positive(sh) - this.negative(sh))))
+			{
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo("islem.louati@esprit.tn");
+			    message.setFrom("ConsommiTounsi@gmail.com");
+			    message.setSubject("PUBLUCATION NOT SUCESS !");
+			    message.setText("the publication is not sucess ");
+			    JavaMailSender mailSender = new JavaMailSenderImpl();
+			    ((JavaMailSenderImpl) mailSender).setHost("smtp.gmail.com");
+			    ((JavaMailSenderImpl) mailSender).setPort(587);
+			    ((JavaMailSenderImpl) mailSender).setUsername("mohamedelarbi.saidi@esprit.tn");
+			    ((JavaMailSenderImpl) mailSender).setPassword("esprit1162");
+			    
+			    Properties props = ((JavaMailSenderImpl) mailSender).getJavaMailProperties();
+			    props.put("mail.transport.protocol", "smtp");
+			    props.put("mail.smtp.auth", "true");
+			    props.put("mail.smtp.starttls.enable", "true");
+			    props.put("mail.debug", "true");
+			   
+			    emailService.sendMailContribution("islem.louati@esprit.tn", "NOTSUCESS");
+			
+
+			}
 
 			System.out.println(this.positive(sh) + sh);
 		} catch (IOException e) {
@@ -263,6 +294,55 @@ public class PublicationServiceImpl implements PublicationService {
 		return 0;
 
 	}
+
+	@Override
+	public int nbrLike(int idPub) {
+		int max=0;
+		
+	Publication pub= publicationRepository.findById(idPub).orElse(null);		
+	List<RatingPub> re = pub.getRatPub();
+		for (RatingPub rr : re) {
+			if (rr.getRat() == rr.getRat().LIKE)
+			{
+				max=max+1;
+			}
+		}
+		return max;
+	}
+
+	@Override
+	public int nbrDislike(int idPub) {
+		int max1=0;
+		
+	Publication pub= publicationRepository.findById(idPub).orElse(null);		
+	List<RatingPub> re = pub.getRatPub();
+		for (RatingPub rr : re) {
+			if (rr.getRat() == rr.getRat().DISLIKE)
+			{
+				max1=max1+1;
+			}
+		}
+		return max1;
+	}
+
+	@Override
+	public Publication maxnblike() {
+		int k=0;
+		List<Publication> pub=(List<Publication>) publicationRepository.findAll();		
+		for(Publication pp : pub ) {
+			//publicationRepository.findById(pp.getIdPub());
+			if(this.nbrLike(pp.getIdPub())> k) {
+				k=nbrLike(pp.getIdPub());
+				
+			}  
+		
+		return pp;
+
+	}
+		return null;
+		}
+	
+
 
 
 

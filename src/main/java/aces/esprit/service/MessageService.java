@@ -1,12 +1,14 @@
 package aces.esprit.service;
 
+import java.util.List;
+
 import aces.esprit.entity.Message;
 
 public interface MessageService {
 
-	void addChat(Message message, int idUser);
+	void addChat(String content, int idUser, int idReceiver);
 
-	void updateChat(Message message, int idUser);
+	List<Message> getMessage(int idSender, int idReceiver);
 
 	void deleteChat(int idMsg);
 

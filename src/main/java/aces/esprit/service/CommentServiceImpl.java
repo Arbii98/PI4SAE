@@ -53,8 +53,16 @@ public class CommentServiceImpl implements CommentService {
 				com.setDescription(FilterBW.filterWord(com.getDescription()));
 				return commentRepository.save(com);
 			} else {
+				if(user.isBlock()==true)
+				{
 				user.setBanned(user.getBanned() + 1);
 				userRepository.save(user);
+				
+				if (user.getBanned()==3) {
+					user.setBlock(true);
+				}
+					
+				}
 			}
 		}
 		return null;
