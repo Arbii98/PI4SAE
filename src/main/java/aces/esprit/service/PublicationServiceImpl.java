@@ -136,17 +136,17 @@ public class PublicationServiceImpl implements PublicationService {
 		return (List<RatingPub>) ratingPubRepository.findAll();
 	}
 
-	@Scheduled(cron = "*/10 * * * * *")
+	//@Scheduled(cron = "*/10 * * * * *")
 	// @Scheduled(cron="*/5 * * * * ?")
 	@Override
 	public void archAutoPub() {
-		for (Publication p : publicationRepository.findAll()) {
+		/*for (Publication p : publicationRepository.findAll()) {
 			Date now = new Date();
 			if (new Date(p.getDateCreation().getYear(), p.getDateCreation().getMonth(), p.getDateCreation().getDate())
 					.before(new Date(now.getYear(), now.getMonth() - 1, now.getDate())) && p.getRatPub().size() == 0) {
 				publicationRepository.deleteById(p.getIdPub());
 			}
-		}
+		}*/
 	}
 
 

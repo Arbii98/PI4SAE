@@ -82,7 +82,7 @@ public class CartController {
 	
 	
 	
-	@Scheduled(fixedRate=60000)
+	//@Scheduled(fixedRate=60000)
 	@DeleteMapping("/deleteCarts")
 	@ResponseBody
 	public void deleteAllOldCarts() {
