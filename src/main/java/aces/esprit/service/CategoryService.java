@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aces.esprit.entity.Category;
+import aces.esprit.repository.ArchiveRepository;
 import aces.esprit.repository.CategoryRepository;
 
 @Service
@@ -13,6 +14,9 @@ public class CategoryService implements ICategoryService {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	ArchiveRepository archiveRepository;
 	
 	public CategoryService() {
 	}
@@ -45,6 +49,9 @@ public class CategoryService implements ICategoryService {
 
 	@Override
 	public void deleteCategoryById(int id) {
+		
+
+		
 		categoryRepository.deleteById(id);
 	}
 
@@ -57,6 +64,8 @@ public class CategoryService implements ICategoryService {
 	public int getNbrCategories() {
 		return categoryRepository.getNbCategories();
 	}
+	
+	
 	
 
 }

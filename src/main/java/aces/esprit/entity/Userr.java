@@ -24,15 +24,17 @@ public class Userr implements Serializable{
 	@Id
 	private int id;
 	
+	private String name;
+	
 	private int age;
 	
 	@Column(name = "gender")
 	@Enumerated(EnumType.STRING)
 	private GenderUser gender;
 
-	@Column(name = "interests")
+	/*@Column(name = "interests")
 	@Enumerated(EnumType.STRING)
-	private InterestsRecommandation interests;
+	private InterestsRecommandation interests;*/
 
 	public int getId() {
 		return id;
@@ -98,13 +100,13 @@ public class Userr implements Serializable{
 		this.gender = gender;
 	}
 
-	public InterestsRecommandation getInterests() {
+	/*public InterestsRecommandation getInterests() {
 		return interests;
 	}
 
 	public void setInterests(InterestsRecommandation interests) {
 		this.interests = interests;
-	}
+	}*/
 
 	public List<Message> getMessagesSent() {
 		return messagesSent;

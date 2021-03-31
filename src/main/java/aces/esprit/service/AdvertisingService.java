@@ -1,5 +1,7 @@
 package aces.esprit.service;
 
+import java.awt.event.AdjustmentEvent;
+
 import java.util.Date;
 
 import java.util.List;
@@ -70,28 +72,44 @@ public class AdvertisingService implements IAdvertisingService {
 		advertisingRepository.deleteAll();
 
 	}
-	@Override
-	public int getnbrViewHomme(int idAd, int idU){
+	
+	//a enlever
+	/*@Override
+	public int getnbrViewMen(int idAd, int idU){
 		
 		Advertising ad = advertisingRepository.findById(idAd).get();
 		Userr user = userrRepository.findById(idU).get();
 		
-		int a = 0;
+		int man = 0;
 		if(user.getGender() == GenderUser.MAN){
-			a = a + 1;
-			a = ad.getNbrFinalViewsAd() + 1;
-			ad.setNbrFinalViewsAd(a);
+			man = man + 1;
+			man = ad.getNbrManViewsAd() + 1;
+			ad.setNbrManViewsAd(man);
 		}
-		
-		
 		advertisingRepository.save(ad);
-		return a;
+		return man;
+	}
+	
+	@Override
+	public int getnbrViewWemen(int idAd, int idU){
+		
+		Advertising ad = advertisingRepository.findById(idAd).get();
+		Userr user = userrRepository.findById(idU).get();
+		
+		int women = 0;
+		if(user.getGender() == GenderUser.MAN){
+			women = women + 1;
+			women = ad.getNbrWomenViewsAd() + 1;
+			ad.setNbrWomenViewsAd(women);
+		}
+		advertisingRepository.save(ad);
+		return women;
 	}
 	
 	@Override
 	public int getNbrAdvertising() {
 		return advertisingRepository.getNbAdvertisings();
-	}
+	}*/
 	
 	//new
 	//click counter
@@ -101,14 +119,29 @@ public class AdvertisingService implements IAdvertisingService {
 		Advertising ad = advertisingRepository.findById(idAd).get();
 		Userr user = userrRepository.findById(idU).get();
 		
-		int allViews = 0;
-	
+		int man = 0;
+		int women = 0;
+		/*int allViews = 0;
+		
 		allViews = allViews + 1;
 		allViews = ad.getNbrFinalViewsAd() + 1;
-		ad.setNbrFinalViewsAd(allViews);
+		ad.setNbrFinalViewsAd(allViews);*/
+		
+		if(user.getGender() == GenderUser.MAN){
+			man = man + 1;
+			man = ad.getNbrManViewsAd() + 1;
+			ad.setNbrManViewsAd(man);
+		}
+		else if(user.getGender() == GenderUser.WOMAN){
+			women = women + 1;
+			women = ad.getNbrWomenViewsAd() + 1;
+			ad.setNbrWomenViewsAd(women);
+		}
+
 		advertisingRepository.save(ad);
 		
-		return allViews;
+		//allviews
+		return man+women;
 	}
 	
 	public long getNbrDaysBetweenTwoDates(Date d2, Date d1){
@@ -126,19 +159,155 @@ public class AdvertisingService implements IAdvertisingService {
 		
 		float prixParJour = ad.getPriceAdPerDay();
 		float prixParVue = ad.getPriceAdPerView();
-		int nbrVue = ad.getNbrInitialViewsAd();
+		int nbrVue = ad.getNbrFinalViewsAd();
 		Date d1 = ad.getDateBeginAd();
 		Date d2 = ad.getDateEndAd();
-		long numberDays = getNbrDaysBetweenTwoDates(d1,d2);
+		long numberDays = getNbrDaysBetweenTwoDates(d2,d1);
 		SponsorType typeSponsor = ad.getSponsorType();
-		
+
 		if(typeSponsor == SponsorType.SOCIETY)
+
 			return ((prixParJour*numberDays)+(prixParVue*nbrVue))*2;
+		
 		else 
 			return (prixParJour*numberDays)+(prixParVue*nbrVue);
 		
 	}
+	
+	public float getCostAllAds(){
+		
+		float result = 0f;
+		
+		for(Advertising ad: getAllAdvertisings()){
+			result = result + getCostAdvertising(ad.getIdAd());
+		}
+		System.out.println("AAAAAAAAAA     "+result);
+		return result;
+		
+	}
+	
 
+	@Override
+	public float getStatisticsPricePerAd(int idAd){
+	
+		return (getCostAdvertising(idAd)/getCostAllAds())*100f;
+		
+	}
+	
+	public long getDurationOfAllAdsPerDays(){
+		
+		long result = 0;
+		
+		for(Advertising ad: getAllAdvertisings()){
+			result = result + getNbrDaysBetweenTwoDates(ad.getDateEndAd(), ad.getDateBeginAd());
+		}
+		System.out.println("DDDDDDDDD   i  "+result);
+		return result;
+		
+	}
+	
+	@Override
+	public float getStatisticsDurationPerAd(int idAd){
+	
+		Advertising ad = advertisingRepository.findById(idAd).get();
+		
+		float nbr = getNbrDaysBetweenTwoDates(ad.getDateEndAd(), ad.getDateBeginAd());
+		System.out.println("testtttt         "+nbr);
+		
+		
+		float a = getDurationOfAllAdsPerDays();
+		System.out.println("eeeee      "+a);
+		
+		float res = nbr/a;
+		System.out.println("rrrrrr    "+res);
+		
+		return res;
+		
+	}
+
+	@Override
+	public float getStatMan(int idAd){
+		
+		Advertising ad = advertisingRepository.findById(idAd).get();
+		
+		float nbrViewHomme = ad.getNbrManViewsAd();
+		float nbrViewAll = ad.getNbrWomenViewsAd();
+		
+		return (nbrViewHomme/nbrViewAll)*100;
+		
+	}
+	
+	@Override
+	public float getStatWomen(int idAd){
+		
+		Advertising ad = advertisingRepository.findById(idAd).get();
+		
+		float nbrViewWomen = ad.getNbrWomenViewsAd();
+		float nbrViewAll = ad.getNbrWomenViewsAd();
+		
+		return (nbrViewWomen/nbrViewAll)*100;
+		
+	}
+	
+
+	@Override
+	public float getPrixParEntrepStat(){
+		
+		float prix = 0f;
+		float prix2 = 0f;
+
+		for(Advertising ad: getAllAdvertisings()){
+			if(ad.getSponsorType() == SponsorType.ENTREPRENEUR){
+				prix = prix + getCostAdvertising(ad.getIdAd());
+			}
+			else if (ad.getSponsorType() == SponsorType.SOCIETY){
+				prix2 = prix2 + getCostAdvertising(ad.getIdAd());
+			}
+		}
+		
+		
+		/*for(Advertising ad: getAllAdvertisings()){
+			if(ad.getSponsorType() == SponsorType.SOCIETY){
+				prix2 = prix2 + getCostAdvertising(ad.getIdAd());
+			}
+		}*/
+		
+		float tot = prix2+prix;
+		
+		float a = prix/tot;
+		System.out.println("                        "+a);
+		return a*100;
+	}
+	
+	@Override
+	public float getPrixParSocStat(){
+		
+		float prix = 0f;
+		
+		for(Advertising ad: getAllAdvertisings()){
+			if(ad.getSponsorType() == SponsorType.ENTREPRENEUR){
+				prix = prix + getCostAdvertising(ad.getIdAd());
+			}
+		}
+		
+		float prix2 = 0f;
+		
+		for(Advertising ad: getAllAdvertisings()){
+			if(ad.getSponsorType() == SponsorType.SOCIETY){
+				prix2 = prix2 + getCostAdvertising(ad.getIdAd());
+			}
+		}
+		
+		float tot = prix2+prix;
+		float a = prix2/tot;
+
+		System.out.println("aaa       "+tot);
+		
+		return a*100;
+	}
+
+
+	
 	
 
 
