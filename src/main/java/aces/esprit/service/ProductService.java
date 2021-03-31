@@ -3,12 +3,21 @@ package aces.esprit.service;
 import java.io.FileInputStream;
 
 
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +37,7 @@ import java.io.OutputStream;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
+import javax.transaction.Transactional;
 
 import org.springframework.util.StringUtils;
 import java.util.Base64;
@@ -38,6 +48,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -79,8 +90,10 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import aces.esprit.entity.Advertising;
 import aces.esprit.entity.AgeRecommandationProduct;
 import aces.esprit.entity.Category;
+import aces.esprit.entity.GenderRecommandation;
 import aces.esprit.entity.LikeProduct;
 import aces.esprit.entity.LikedProduct;
+import aces.esprit.entity.Marque;
 import aces.esprit.entity.Product;
 import aces.esprit.entity.User;
 import aces.esprit.entity.Userr;
@@ -112,7 +125,48 @@ public class ProductService implements IProductService {
 		this.productRepository = productRepository;
 		this.categoryRepository = categoryRepository;
 	}
+	
+	//Adding product with or without generationg BarCode
+	@Override
+	public Product ajouterProduit(String nameProd, 
+			String imageBarcode, 
+			String barcode, 
+			String imageProduct, 
+			String imageQRCodeName,
+			String description,
+			float price,
+			AgeRecommandationProduct age,
+			GenderRecommandation gender){
+		
+		Product p = new Product();
+		p.setNameProduct(nameProd);
+		p.setImageBarcodeFileNameProduct(imageBarcode);
+		p.setBarcodeProduct(barcode);
+		p.setImageFileNameProduct(imageProduct);
+		p.setQrCodeImageProduct(imageQRCodeName);
+		p.setDescriptionProduct(description);
+		p.setPriceProduct(price);
+		p.setGender(gender);
+		p.setAge(age);
+		
+		//affectation des deux cates
+		Date today = new Date();
+	    Calendar c1 = Calendar.getInstance(); 
+	    c1.setTime(today); 
+	    today = c1.getTime();
+	    p.setDateCreationProduct(today);
+	    	    
+	    Date remainingDate = new Date();
+	    Calendar c = Calendar.getInstance(); 
+	    c.setTime(remainingDate); 
+	    c.add(Calendar.DATE, 7);
+	    remainingDate = c.getTime();
+	    p.setDateEndNewProduct(remainingDate);
 
+		return productRepository.save(p);
+	}
+
+	//Normal add without any image
 	@Override
 	public void addProduct(Product product) {
 		
@@ -133,11 +187,15 @@ public class ProductService implements IProductService {
 	}
 	
 	@Override
-	public Product addNewProduct(int idProd, String name,String imgNameBarcode, String barcode, boolean generateBarcode) throws Exception {
+	public Product addOneProduct(String name,String imgNameBarcode, String imgName, String barcode) throws Exception {
 		
-		Product p = productRepository.findById(idProd).get();
+		//Product p = productRepository.findById(idProd).get();
 
+		Product p = new Product();
+		
 		p.setImageBarcodeFileNameProduct(imgNameBarcode);
+		p.setImageFileNameProduct(imgName);
+
 		
 		Date today = new Date();
 	    Calendar c1 = Calendar.getInstance(); 
@@ -145,8 +203,6 @@ public class ProductService implements IProductService {
 	    today = c1.getTime();
 	    p.setDateCreationProduct(today);
 	    
-	    p.setGenerateBarcode(generateBarcode);
-	    p.setBarcodeProduct(barcode);
 	    	    
 	    Date remainingDate = new Date();
 	    Calendar c = Calendar.getInstance(); 
@@ -154,8 +210,12 @@ public class ProductService implements IProductService {
 	    c.add(Calendar.DATE, 7);
 	    remainingDate = c.getTime();
 	    p.setDateEndNewProduct(remainingDate);
+	  
 	    p.setNameProduct(name);
-	    	            
+	    p.setBarcodeProduct(barcode);
+
+	    int idProd = p.getIdProduct();
+	    
 	    String imageName = "QRCode"+String.valueOf(idProd)+".png";
 	    System.out.println(imageName);
 	    
@@ -191,10 +251,6 @@ public class ProductService implements IProductService {
 		return productRepository.findById(id).get();
 	}
 
-	@Override
-	public List<Product> getProductByName(String name) {
-		return productRepository.findByName(name);
-	}
 
 	@Override
 	public void updateProduct(Product prod, int idProd) {
@@ -225,7 +281,55 @@ public class ProductService implements IProductService {
 
 		productEntity.setCategory(category);
 		productRepository.save(productEntity);
+	}
+	
+	@Override
+	@Transactional
+	public void desaffecterProductFromCategory(int idProd)
+	{
+		Product productEntity = productRepository.findById(idProd).get();
+		//Category category = categoryRepository.findById(idCat).get();
 
+		productEntity.setCategory(null);
+		productRepository.save(productEntity);
+		/*
+		Category cat = categoryRepository.findById(idCat).get();
+		
+		int prodNb = cat.getProducts().size();
+		for(int index = 0; index < prodNb; index++){
+			if(cat.getProducts().get(index).getIdProduct() == idProd){
+				cat.getProducts().remove(index);
+				break;
+			}
+		}*/
+	}
+	
+	@Override
+	@Transactional
+	public void desaffecterProductFromAllCategory(int idCat)
+	{
+		//Product productEntity = productRepository.findById(idProd).get();
+		//Category category = categoryRepository.findById(idCat).get();
+
+		//productEntity.setCategory(category);
+		//productRepository.save(productEntity);
+		
+		Category cat = categoryRepository.findById(idCat).get();
+		List<Product> listP = (List<Product>) productRepository.findAll();
+		
+		for (Product p:listP){
+			if (p.getCategory() == cat){
+				productRepository.delete(p);
+			}
+		}
+		
+		/*int prodNb = cat.getProducts().size();
+		for(int index = 0; index < prodNb; index++){
+			if(cat.getProducts().get(index).getIdProduct() == idProd){
+				cat.getProducts().remove(index);
+				break;
+			}
+		}*/
 	}
 
 	//check ken tekhdem wale
@@ -237,7 +341,6 @@ public class ProductService implements IProductService {
 		}
 		return prodNames;
 	}
-
 
 	public List<Product> getNewProducts(){
 				
@@ -263,7 +366,7 @@ public class ProductService implements IProductService {
 	    	if((pp.getDateCreationProduct().after(dt1) || pp.getDateCreationProduct().equals(dt1)) 
 		    		&& (pp.getDateCreationProduct().before(dt) || pp.getDateCreationProduct().equals(dt)))		    	
 	    		newProds.add(pp);
-	    	if(pp.getDateEndNewProduct().equals(dt1) || pp.getDateEndNewProduct().after(dt1))
+	    	else if(pp.getDateEndNewProduct().equals(dt1) || pp.getDateEndNewProduct().after(dt1))
 	    		newProds.remove(pp);
 	    	
 	    }
@@ -419,10 +522,10 @@ public class ProductService implements IProductService {
 		System.out.println(" user :"+user.toString());
 		System.out.println(" ss :"+ageRec);
 		
-		if(user.getAge() <= 15){
+		if(user.getAge() <= 17){
 			ageRec = AgeRecommandationProduct.CHILD;
 		}
-		else if (user.getAge() >= 18 && user.getAge() <= 30){
+		else if (user.getAge() >= 18 && user.getAge() <= 29){
 			ageRec = AgeRecommandationProduct.JUNIOR;
 		}
 		else {
@@ -433,7 +536,276 @@ public class ProductService implements IProductService {
 	}
 
 
+	@Override
+	public List<String> search(String keyword){
+		return this.productRepository.search(keyword);
+	}
+	
+	@Override
+	public List<Product> searchDetails(String keyword){
+		return this.productRepository.searchDetails(keyword);
+	}
+	
+	@Override
+	public List<Product> recherche(String keyword){
+		return this.productRepository.rechercheProd(keyword);
+	}
+	
+
+	@Override
+	public List<Product> getAllProductsByCategory(int idCat) {
+		Category category = categoryRepository.findById(idCat).get();
+		List<Product> prod = new ArrayList<>();
+		for (Product p : category.getProducts()) {
+			prod.add(p);
+		}
+		
+		return prod;
+	}
+	
+	@Override
+	public List<Product> getAllProductsByNameCategory(String nomCat) {
+
+		List<Product> prod = new ArrayList<>();
+		for (Product p : productRepository.findAll()) {
+			if(p.getCategory().getNameCategory() == nomCat)
+			prod.add(p);
+		}
+		
+		return prod;
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<Product> getAllProductsRecommandedForMen() {
+
+		return productRepository.getAllProductsRecommandedForMen();
+	}
+		
+	@Override
+	public List<Product> getAllProductsRecommandedForWemen() {
+
+		return productRepository.getAllProductsRecommandedForWomen();
+	}
+	
+	@Override
+	public List<Product> getAllProductsRecommandedForChild() {
+
+		return productRepository.getAllProductsRecommandedForChild();
+	}
+	
+	@Override
+	public List<Product> getAllProductsRecommandedForJunior() {
+
+		return productRepository.getAllProductsRecommandedForJunior();
+	}
+	
+	@Override
+	public List<Product> getAllProductsRecommandedForSenior() {
+
+		return productRepository.getAllProductsRecommandedForSenior();
+	}
+	
+	@Override
+	public float StatisticsMan(){
+		
+		float man = 0;
+		float woman = 0;
+		
+		for(Product p: getAllProducts()){
+			if(p.getGender() == GenderRecommandation.MAN){
+				man = man + 1;
+			}
+			else if(p.getGender() == GenderRecommandation.WOMAN){
+				woman = woman + 1;
+			}
+		}
+		
+		float tot = woman + man;
+		float a = man/tot;
+		
+		return a*100;
+	}
+	
+	@Override
+	public float StatisticsWoman(){
+		
+		float man = 0;
+		float woman = 0;
+		
+		for(Product p: getAllProducts()){
+			if(p.getGender() == GenderRecommandation.MAN){
+				man = man + 1;
+			}
+			else if(p.getGender() == GenderRecommandation.WOMAN){
+				woman = woman + 1;
+			}
+		}
+		
+		float tot = woman + man;
+		float a = woman/tot;
+		
+		return a*100;
+	}
+	
+	
+	@Override
+	public float StatisticsChild(){
+		
+		float child = 0;
+		float junior = 0;
+		float senior = 0;
+		
+		for(Product p: getAllProducts()){
+			if(p.getAge() == AgeRecommandationProduct.CHILD){
+				child = child + 1;
+			}
+			else if(p.getAge() == AgeRecommandationProduct.JUNIOR){
+				junior = junior + 1;
+			}
+			else if(p.getAge() == AgeRecommandationProduct.SENIOR){
+				senior = senior + 1;
+			}
+		}
+		
+		float tot = child + junior + senior;
+		float a = child/tot;
+		
+		return a*100;
+	}
+	
+	@Override
+	public float StatisticsJunior(){
+		
+		float child = 0;
+		float junior = 0;
+		float senior = 0;
+		
+		for(Product p: getAllProducts()){
+			if(p.getAge() == AgeRecommandationProduct.CHILD){
+				child = child + 1;
+			}
+			else if(p.getAge() == AgeRecommandationProduct.JUNIOR){
+				junior = junior + 1;
+			}
+			else if(p.getAge() == AgeRecommandationProduct.SENIOR){
+				senior = senior + 1;
+			}
+		}
+		
+		float tot = child + junior + senior;
+		float a = junior/tot;
+		
+		return a*100;
+	}
+	
+	@Override
+	public float StatisticsSenior(){
+		
+		float child = 0;
+		float junior = 0;
+		float senior = 0;
+		
+		for(Product p: getAllProducts()){
+			if(p.getAge() == AgeRecommandationProduct.CHILD){
+				child = child + 1;
+			}
+			else if(p.getAge() == AgeRecommandationProduct.JUNIOR){
+				junior = junior + 1;
+			}
+			else if(p.getAge() == AgeRecommandationProduct.SENIOR){
+				senior = senior + 1;
+			}
+		}
+		
+		float tot = child + junior + senior;
+		float a = senior/tot;
+		
+		return a*100;
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<Product> getTopProdsByPrice(int nbr) {
+
+		List<Product> currentProds = (List<Product>) productRepository.findAll();
+		List<Product> top5Prods = new ArrayList<>();
+        
+		int i = 0;
+		Date d=new Date();  
+        int year=d.getYear();  
+        int currentYear=year+1900; 
+        System.out.println(currentYear);
 
 
+		do{
+		
+		Optional<Product> highestProduct=
+				currentProds.stream().collect(Collectors.maxBy(Comparator.comparingDouble(Product::getPriceProduct)));
+				         
+				Product highestPriceProd = highestProduct.get();
+				top5Prods.add(highestPriceProd);
+				currentProds.remove(highestPriceProd);
+				i++;	
+				
+		} while(i < nbr); 
+		
+		
+		List<Product> top5ProdsYear = new ArrayList<>();
+
+		
+		for (Product p : top5Prods) {
+        	int d1 = p.getDateCreationProduct().getYear()+1900;
+			if(d1 == currentYear){
+				top5ProdsYear.add(p);
+			}
+		}
+
+				return top5ProdsYear;
+	}
+	
+	@Override
+	public List<Product> whishList(int idProd){
+		
+		List<Product> whishList = new ArrayList<>();
+		Product p = productRepository.findById(idProd).get();
+		Category c = p.getCategory();
+		Marque m = p.getMarque();
+		
+		for(Product pc: getAllProducts()){
+			if(pc.getCategory() == c && pc.getMarque() == m){
+				whishList.add(pc);
+			}
+		}
+		
+		whishList.remove(p);
+		
+		return whishList;	
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

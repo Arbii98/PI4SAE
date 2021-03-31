@@ -13,11 +13,15 @@ public interface IAdvertisingService {
 	void updateAdvertising(Advertising advertising, int idAd);
 	void deleteAdvertisingById(int id);
 	void deleteAllAdvertisings();
-	int getnbrViewHomme(int idAd, int idU);
 
 	int getnbrViewPerAd(int idAd, int idU);
 	float getCostAdvertising(int idAd);
-	int getNbrAdvertising();
+	float getStatisticsPricePerAd(int idAd);
+	float getStatisticsDurationPerAd(int idAd);
+	float getStatMan(int idAd);
+	float getStatWomen(int idAd);
+	float getPrixParEntrepStat();
+	float getPrixParSocStat();
 
-
+	
 }

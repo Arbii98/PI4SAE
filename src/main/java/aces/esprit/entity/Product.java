@@ -5,10 +5,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -56,20 +58,12 @@ public class Product implements Serializable{
 	@Column(name = "imageBarcode")
 	private String imageBarcodeFileNameProduct;
 	
-	@Column(name = "video")
-	private String videoFileNameProduct;
-	
 	@Column(name = "barcode")
 	private String barcodeProduct;
 	
 	@Column(name = "qrCodeImage")
 	private String qrCodeImageProduct;
-	
-	@Column(name = "qr")
-	private byte[] qr;
-	
-	@Column(name = "generateBarcode")
-	private boolean generateBarcode;
+
 	
 	@Column(name = "age")
 	@Enumerated(EnumType.STRING)
@@ -84,8 +78,12 @@ public class Product implements Serializable{
 	private Category category;
 	
 	@ManyToOne
-	@JoinColumn(name = "fkIdAd")
-	private Advertising advertising;
+	@JoinColumn(name = "fkIdMarque")
+	private Marque marque;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	private List<Advertising> advertisings;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
@@ -122,7 +120,7 @@ public class Product implements Serializable{
 
 	public Product(int idProduct, String nameProduct, String descriptionProduct, float priceProduct,
 			Date dateCreationProduct, Date dateEndNewProduct, String imageFileNameProduct,
-			String imageBarcodeFileNameProduct, String videoFileNameProduct, String barcodeProduct, Category category,
+			String imageBarcodeFileNameProduct, String barcodeProduct, Category category,
 			Advertising advertising, List<LikeProduct> likeProducts, Rayon rayon) {
 		super();
 		this.idProduct = idProduct;
@@ -133,10 +131,8 @@ public class Product implements Serializable{
 		this.dateEndNewProduct = dateEndNewProduct;
 		this.imageFileNameProduct = imageFileNameProduct;
 		this.imageBarcodeFileNameProduct = imageBarcodeFileNameProduct;
-		this.videoFileNameProduct = videoFileNameProduct;
 		this.barcodeProduct = barcodeProduct;
 		this.category = category;
-		this.advertising = advertising;
 		this.likeProducts = likeProducts;
 		this.rayon = rayon;
 	}
@@ -145,7 +141,7 @@ public class Product implements Serializable{
 	public String toString() {
 		return "Product [idProduct=" + idProduct + ", nameProduct=" + nameProduct + ", descriptionProduct="
 				+ descriptionProduct + ", priceProduct=" + priceProduct + ", dateCreationProduct=" + dateCreationProduct
-				+ ", imageFileNameProduct=" + imageFileNameProduct + ", videoFileNameProduct=" + videoFileNameProduct
+				+ ", imageFileNameProduct=" + imageFileNameProduct
 				+ ", barcodeProduct=" + barcodeProduct + "]";
 	}
 
@@ -197,16 +193,6 @@ public class Product implements Serializable{
 		this.imageFileNameProduct = imageFileNameProduct;
 	}
 
-	public String getVideoFileNameProduct() {
-		return videoFileNameProduct;
-	}
-
-	public void setVideoFileNameProduct(String videoFileNameProduct) {
-		this.videoFileNameProduct = videoFileNameProduct;
-	}
-
-
-
 	public String getBarcodeProduct() {
 		return barcodeProduct;
 	}
@@ -225,14 +211,6 @@ public class Product implements Serializable{
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public Advertising getAdvertising() {
-		return advertising;
-	}
-
-	public void setAdvertising(Advertising advertising) {
-		this.advertising = advertising;
 	}
 
 	public Stock getCurrentStock() {
@@ -268,13 +246,6 @@ public class Product implements Serializable{
 		this.imageBarcodeFileNameProduct = imageBarcodeFileNameProduct;
 	}
 
-	public boolean isGenerateBarcode() {
-		return generateBarcode;
-	}
-
-	public void setGenerateBarcode(boolean generateBarcode) {
-		this.generateBarcode = generateBarcode;
-	}
 
 	public String getQrCodeImageProduct() {
 		return qrCodeImageProduct;
@@ -292,13 +263,30 @@ public class Product implements Serializable{
 		this.age = age;
 	}
 
-	public byte[] getQr() {
-		return qr;
+	public GenderRecommandation getGender() {
+		return gender;
 	}
 
-	public void setQr(byte[] qr) {
-		this.qr = qr;
+	public void setGender(GenderRecommandation gender) {
+		this.gender = gender;
 	}
+
+	public Marque getMarque() {
+		return marque;
+	}
+
+	public void setMarque(Marque marque) {
+		this.marque = marque;
+	}
+
+	public List<Advertising> getAdvertisings() {
+		return advertisings;
+	}
+
+	public void setAdvertisings(List<Advertising> advertisings) {
+		this.advertisings = advertisings;
+	}
+
 
 	
 	

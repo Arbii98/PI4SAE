@@ -12,6 +12,8 @@ import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
 import com.google.zxing.NotFoundException;
 
+import aces.esprit.entity.AgeRecommandationProduct;
+import aces.esprit.entity.GenderRecommandation;
 import aces.esprit.entity.Product;
 
 public interface IProductService {
@@ -19,7 +21,6 @@ public interface IProductService {
 	void addProduct(Product product);
 	List<Product> getAllProducts();
 	Product getProductById(int id);
-	List<Product> getProductByName(String name);
 	void updateProduct(Product product, int idProd);
 	void deleteProductById(int id);
 	void deleteAllProducts();
@@ -38,10 +39,33 @@ public interface IProductService {
 	byte[] getBarCodeImage(String text, int width, int height, String filePath) throws Exception;
 	List<Product> RecommendedProduct(int id);
 
-	Product addNewProduct(int idProd, String name, String imgNameBarcode, String barcode, boolean generateBarcode)
-			throws Exception;
 	
+	List<String> search(String keyword);
+	List<Product> searchDetails(String keyword);
+	List<Product> recherche(String keyword);
+	List<Product> getAllProductsByCategory(int idCat);
+	List<Product> getAllProductsByNameCategory(String nomCat);
+	List<Product> getAllProductsRecommandedForMen();
+	List<Product> getAllProductsRecommandedForWemen();
+	List<Product> getAllProductsRecommandedForChild();
+	List<Product> getAllProductsRecommandedForJunior();
+	List<Product> getAllProductsRecommandedForSenior();
+	float StatisticsMan();
+	float StatisticsWoman();
+	float StatisticsChild();
+	float StatisticsJunior();
+	float StatisticsSenior();
+	//void desaffecterProductFromCategory(int idProd, int idCat);
 	
+	Product addOneProduct(String name, String imgNameBarcode, String imgName, String barcode) throws Exception;
+	
+	Product ajouterProduit(String nameProd, String imageBarcode, String barcode, String imageProduct,
+			String imageQRCodeName, String description, float price, AgeRecommandationProduct age,
+			GenderRecommandation gender);
+	List<Product> whishList(int idProd);
+	List<Product> getTopProdsByPrice(int nbr);
+	void desaffecterProductFromCategory(int idProd);
+	void desaffecterProductFromAllCategory(int idCat);
 
 
 	
