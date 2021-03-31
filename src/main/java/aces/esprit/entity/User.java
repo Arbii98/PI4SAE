@@ -35,7 +35,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
+	//@JsonIgnore
 	private int id;
 
 	private int banned;

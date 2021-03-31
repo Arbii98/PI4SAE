@@ -131,6 +131,13 @@ public class DeliveryController {
 	}
 	
 	
+	@GetMapping("/getTempsAttenteMoyenParLivreur")
+	@ResponseBody
+	public List<Object> getTempsAttenteMoyenParLivreur(){
+		return ds.getTempsAttenteMoyenParLivreur();
+	}
+	
+	
 	
 	
 	
