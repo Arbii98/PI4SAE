@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import aces.esprit.entity.Reclamation;
+import aces.esprit.entity.ReclamationLivreurStat;
 import aces.esprit.service.ReclamationService;
 import aces.esprit.service.EmailService;
 
@@ -75,6 +76,39 @@ public class ReclamationController {
 		return rs.getReclamationsByClient(idClient);
 		
 	}
+	
+	
+	@GetMapping("/getReclamationsByLivreur")
+	@ResponseBody
+	public List<ReclamationLivreurStat> getReclamationsByLivreur() {
+		return rs.getReclamationsByLivreur();
+		
+	}
+	
+	
+	@PutMapping("/marquerEnCours/{idReclamation}")
+	@ResponseBody
+	public void marquerEnCours(@PathVariable("idReclamation") int idReclamation)
+	{
+		rs.marquerEnCours(idReclamation);
+	}
+	
+	@PutMapping("/marquerTraitee/{idReclamation}")
+	@ResponseBody
+	public void marquerTraitee(@PathVariable("idReclamation") int idReclamation)
+	{
+		rs.marquerTraitee(idReclamation);
+	}
+	
+	@PutMapping("/marquerNonTraitee/{idReclamation}")
+	@ResponseBody
+	public void marquerNonTraitee(@PathVariable("idReclamation") int idReclamation)
+	{
+		rs.marquerNonTraitee(idReclamation);
+	}
+	
+	
+	
 	
 	
 

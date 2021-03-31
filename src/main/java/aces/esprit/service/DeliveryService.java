@@ -106,6 +106,11 @@ public class DeliveryService {
 		return moyenne;
 	}
 	
+	public List<Object> getTempsAttenteMoyenParLivreur()
+	{
+		return dr.getAttenteMoyenParLivreur();
+	}
+	
 	
 
 }

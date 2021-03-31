@@ -300,6 +300,14 @@ public class Product implements Serializable{
 		this.qr = qr;
 	}
 
+	public GenderRecommandation getGender() {
+		return gender;
+	}
+
+	public void setGender(GenderRecommandation gender) {
+		this.gender = gender;
+	}
+
 	
 	
 	

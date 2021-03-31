@@ -10,5 +10,6 @@ public interface IEventService {
 	List<Event> getAllEvents();
 	List<Event> getUpcomingEvents();
 	void deleteEvent(int id);
+	boolean getEventsToday();
 
 }

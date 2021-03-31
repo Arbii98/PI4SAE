@@ -22,7 +22,7 @@ public class ReponseRec implements Serializable {
 	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	@Enumerated(EnumType.STRING)
 	private Decision decision;
@@ -34,6 +34,48 @@ public class ReponseRec implements Serializable {
 	
 	@OneToOne
 	private Reclamation reclamation ;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Decision getDecision() {
+		return decision;
+	}
+
+	public void setDecision(Decision decision) {
+		this.decision = decision;
+	}
+
+	public Date getDateReponse() {
+		return dateReponse;
+	}
+
+	public void setDateReponse(Date dateReponse) {
+		this.dateReponse = dateReponse;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Reclamation getReclamation() {
+		return reclamation;
+	}
+
+	public void setReclamation(Reclamation reclamation) {
+		this.reclamation = reclamation;
+	}
+	
+	
 	
 	
 	

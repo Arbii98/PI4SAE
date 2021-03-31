@@ -22,6 +22,12 @@ public interface JackpotRepository extends CrudRepository<Jackpot, Integer>{
 	
 	@Query("select sum(j.montant) from Jackpot j where j.type ='WITHDRAW'")
 	int GetSumWithdraw();
+	
+	@Query("select count(j) from Jackpot j where j.type = 'WITHDRAW'")
+	int getCountWithdraw();
+	
+	@Query("select count(j) from Jackpot j where j.type = 'CONTRIBUTION'")
+	int getCountContributions();
 
 	
 	@Query(value="select cast(t1.date as datetime) ,"

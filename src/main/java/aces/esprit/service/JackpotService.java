@@ -58,12 +58,31 @@ public class JackpotService implements IJackpotService{
 
 	@Override
 	public float getCurrentMontantTotal() {
-		return jr.GetSumContributions()-jr.GetSumWithdraw();
+		float totalContributions = 0;
+		float totalWidthdraw = 0;
+		if(jr.getCountContributions()>0)
+		{
+			totalContributions = jr.GetSumContributions();
+		}
+		
+		if(jr.getCountWithdraw()>0)
+		{
+			totalWidthdraw = jr.GetSumWithdraw();
+		}
+		
+		return totalContributions-totalWidthdraw;
 	}
 
 	@Override
 	public float getMontantTotal() {
-		return jr.GetSumContributions();
+		if(jr.getCountContributions()>0)
+		{
+			return jr.GetSumContributions();
+		}
+		else
+		{
+			return 0;
+		}
 	}
 
 	@Override
