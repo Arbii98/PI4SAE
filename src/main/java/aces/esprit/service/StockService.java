@@ -181,7 +181,7 @@ public class StockService {
 				pr.save(p);
 				System.out.println("NO MORE STOCK");
 				//ENVOIE MAIL NO MORE STOCK
-				es.sendMailStock("ahmed.oueslati1@esprit.tn","Stock");
+				es.sendMailStock("oueslati.ahmed1@esprit.tn","Stock");
 				return -1;
 			}
 			else
