@@ -38,5 +38,8 @@ public interface ReclamationRepository extends CrudRepository<Reclamation, Integ
 	
 	
 	
+	
+	
+	
 
 }

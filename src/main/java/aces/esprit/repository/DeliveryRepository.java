@@ -23,5 +23,11 @@ public interface DeliveryRepository extends CrudRepository<Delivery, Integer>{
 	@Query("select d from Delivery d where d.etat = :done")
 	List<Delivery> getHistoryDeliveries(@Param("done") DeliveryStatus etat);
 	
+	
+	//@Query("select ABS(d.DeliveryDate.time-d.commande.dateOrder.time), d.livreur from Delivery d group by d.livreur")
+	@Query("select FUNCTION('DATEDIFF',d.DeliveryDate,d.commande.dateOrder), d.livreur from Delivery d group by d.livreur")
+	//@Query(nativeQuery=true,value="select DATEDIFF('SECOND',d.DeliveryDate,d.commande.dateOrder), d.livreur from Delivery d group by d.livreur")
+	List<Object> getAttenteMoyenParLivreur();
+	
 
 }
