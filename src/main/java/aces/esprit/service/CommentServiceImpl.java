@@ -1,10 +1,11 @@
 package aces.esprit.service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import aces.esprit.entity.Comment;
 import aces.esprit.entity.CommentPk;
@@ -52,28 +53,22 @@ public class CommentServiceImpl implements CommentService {
 			if (FilterBW.filterText(com.getDescription()).size() < 3) {
 				com.setDescription(FilterBW.filterWord(com.getDescription()));
 				return commentRepository.save(com);
-			} else {
-				if(user.isBlock()==true)
-				{
+			} else 
+			{
 				user.setBanned(user.getBanned() + 1);
 				userRepository.save(user);
-				
-				if (user.getBanned()==3) {
-					user.setBlock(true);
-				}
-					
-				}
+			
+		
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public void updateComment(Comment com, String description) {
+	public void updateComment(Comment com) {
 
 		Comment c = commentRepository.findById(com.getCommentPk()).orElse(null);
 		if (c != null) {
-			com.setDescription(description);
 			commentRepository.save(com);
 		}
 	}

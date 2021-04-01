@@ -10,6 +10,6 @@ public interface MessageService {
 
 	List<Message> getMessage(int idSender, int idReceiver);
 
-	void deleteChat(int idMsg);
+	boolean deleteChat(int idMsg);
 
 }

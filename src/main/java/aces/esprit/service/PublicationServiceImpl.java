@@ -48,7 +48,7 @@ public class PublicationServiceImpl implements PublicationService {
 
 	@Override
 	public Publication addPublication(Publication pub, int idUser) {
-		User userp = (User) userRepository.findById(idUser).orElse(null);
+		User userp =  userRepository.findById(idUser).orElse(null);
 		if (userp != null) {
 			pub.setUserp(userp);
 			return publicationRepository.save(pub);
@@ -60,6 +60,8 @@ public class PublicationServiceImpl implements PublicationService {
 	@Override
 	public Publication updatePublication(Publication pub, int idPub) {
 		if (publicationRepository.findById(idPub).orElse(null) != null) {
+			Publication p = publicationRepository.findById(idPub).orElse(null);
+			pub.setUserp(p.getUserp());
 			pub.setIdPub(idPub);
 			return publicationRepository.save(pub);
 		}
@@ -75,7 +77,6 @@ public class PublicationServiceImpl implements PublicationService {
 
 	@Override
 	public Publication getByIdpub(int idPub) {
-		// TODO Auto-generated method stub
 		return publicationRepository.findById(idPub).orElse(null);
 	}
 
@@ -115,20 +116,28 @@ public class PublicationServiceImpl implements PublicationService {
 
 	@Override
 	public List<Publication> getallpubByTopComment() {
-		return (List<Publication>) publicationRepository.getAllPublish();
+		return  publicationRepository.getAllPublishByTopComment();
 	}
 
 	@Override
 	public RatingPub affectRatForPub(RatingPub ratp, int idUser, int idPub) {
 		Publication p = publicationRepository.findById(idPub).orElse(null);
-		User user = (User) userRepository.findById(idUser).orElse(null);
+		User user =  userRepository.findById(idUser).orElse(null);
 		if (p != null && user != null) {
+			List<RatingPub> rp = ratingPubRepository.getByPubAndUser(p, user);
+			if(rp.isEmpty()) {
 			ratp.setUser(user);
 			ratp.setPub(p);
 			return ratingPubRepository.save(ratp);
 
 		}
+			else
+			{
+				ratingPubRepository.delete(rp.get(0));	
+			}
+		}
 		return null;
+	
 	}
 
 	@Override
@@ -212,7 +221,7 @@ public class PublicationServiceImpl implements PublicationService {
 			while ((line = in.readLine()) != null) {
 				String parts[] = line.split("\t");
 				map.put(parts[0], parts[1]);
-				count++;
+				count=count+1;
 			}
 			in.close();
 
@@ -227,12 +236,11 @@ public class PublicationServiceImpl implements PublicationService {
 
 					if (map.get(word[i]) != null) {
 						String wordscore = map.get(word[i].toLowerCase());
-						tweetscore = (float) tweetscore + Integer.parseInt(wordscore);
+						tweetscore =  tweetscore + Integer.parseInt(wordscore);
 					}
 				}
 				Map<String, Float> sentiment = new HashMap<String, Float>();
 				sentiment.put(tweet, tweetscore);
-				System.out.println(sentiment.toString());
 				sum += tweetscore;
 
 			}
@@ -261,7 +269,7 @@ public class PublicationServiceImpl implements PublicationService {
 			while ((line = in.readLine()) != null) {
 				String parts[] = line.split("\t");
 				map.put(parts[0], parts[1]);
-				count++;
+				count=count+1;
 			}
 			in.close();
 
@@ -276,12 +284,11 @@ public class PublicationServiceImpl implements PublicationService {
 
 					if (map.get(word[i]) != null) {
 						String wordscore = map.get(word[i].toLowerCase());
-						tweetscore = (float) tweetscore + Integer.parseInt(wordscore);
+						tweetscore = tweetscore + Integer.parseInt(wordscore);
 					}
 				}
 				Map<String, Float> sentiment = new HashMap<String, Float>();
 				sentiment.put(tweet, tweetscore);
-				System.out.println(sentiment.toString());
 				sum += tweetscore;
 
 			}
@@ -296,8 +303,10 @@ public class PublicationServiceImpl implements PublicationService {
 	}
 
 	@Override
-	public int nbrLike(int idPub) {
+	public Map<String, Integer> nbrLike(int idPub) {
 		int max=0;
+		int max1=0;
+		Map<String, Integer> map = new HashMap();
 		
 	Publication pub= publicationRepository.findById(idPub).orElse(null);		
 	List<RatingPub> re = pub.getRatPub();
@@ -306,44 +315,21 @@ public class PublicationServiceImpl implements PublicationService {
 			{
 				max=max+1;
 			}
+			else 
+				if (rr.getRat() == rr.getRat().DISLIKE)
+				{
+					max1=max1+1;
+				}
+			map.put("Like",  max);
+			map.put("dislike", max1);
+			
 		}
-		return max;
+		return map;
 	}
 
-	@Override
-	public int nbrDislike(int idPub) {
-		int max1=0;
-		
-	Publication pub= publicationRepository.findById(idPub).orElse(null);		
-	List<RatingPub> re = pub.getRatPub();
-		for (RatingPub rr : re) {
-			if (rr.getRat() == rr.getRat().DISLIKE)
-			{
-				max1=max1+1;
-			}
-		}
-		return max1;
-	}
-
-	@Override
-	public Publication maxnblike() {
-		int k=0;
-		List<Publication> pub=(List<Publication>) publicationRepository.findAll();		
-		for(Publication pp : pub ) {
-			//publicationRepository.findById(pp.getIdPub());
-			if(this.nbrLike(pp.getIdPub())> k) {
-				k=nbrLike(pp.getIdPub());
-				
-			}  
-		
-		return pp;
-
-	}
-		return null;
-		}
 	
 
-
+	
 
 
 }

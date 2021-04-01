@@ -9,9 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.DecimalMax;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 public class RatingPub implements Serializable {
@@ -29,6 +30,14 @@ public class RatingPub implements Serializable {
 	@ManyToOne
 	@JsonIgnore
 	private User user;
+
+	public RatingPub(int idRp, ratPub rat, Publication pub, User user) {
+		super();
+		this.idRp = idRp;
+		this.rat = rat;
+		this.pub = pub;
+		this.user = user;
+	}
 
 	public RatingPub() {
 		super();

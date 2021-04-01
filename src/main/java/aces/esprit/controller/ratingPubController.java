@@ -27,9 +27,10 @@ public class ratingPubController {
 	}
 
 	@PostMapping("{idUser}/{idPub}")
-	public ResponseEntity<Void> affectRatForPub(@RequestBody RatingPub ratp, @PathVariable int idUser, @PathVariable int idPub) {
-		if(publicationService.affectRatForPub(ratp, idUser, idPub) != null)
-		
+	public ResponseEntity<Void> affectRatForPub(@RequestBody RatingPub ratp, @PathVariable int idUser,
+			@PathVariable int idPub) {
+		if (publicationService.affectRatForPub(ratp, idUser, idPub) != null)
+
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		else
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

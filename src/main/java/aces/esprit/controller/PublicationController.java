@@ -2,16 +2,12 @@ package aces.esprit.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,7 +40,6 @@ public class PublicationController {
 	}
 
 	@PutMapping("{idPub}")
-	 @RequestMapping(value = "/update/{idPub}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> updatePublication(@RequestBody Publication publication, @PathVariable int idPub) {
 		if(publicationService.updatePublication(publication, idPub) != null)
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
@@ -58,7 +52,7 @@ public class PublicationController {
 		publicationService.deletePublication(idPub);
 	}
 
-	@GetMapping
+	@GetMapping(value = "/getAllPublishByTopComment")
 	public List<Publication> getallpubByTopComment() {
 		return publicationService.getallpubByTopComment();
 	}
@@ -72,32 +66,33 @@ public class PublicationController {
 		return publicationService.IAScanner(idPub);
 		
 	}
-	@GetMapping(value = "/getoubuser/{idUser}")
+	@GetMapping(value = "/getallbubbyuser/{idUser}")
 	public List<Publication> getAllPubByUser(@PathVariable int idUser){
 		return publicationService.getAllPubByUser(idUser);
 		
 	}
 	@GetMapping(value = "/getpubTitle/{title}")
-	public Publication getByTitle(@PathVariable String title){
-		return publicationService.getByTitle(title);
+	public ResponseEntity<Void> getByTitle(@PathVariable String title){
+		if( publicationService.getByTitle(title)!= null) 
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
+	
 	}
 	@GetMapping("/pub")
 	public ResponseEntity<Map<String, Object>> getPub(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size) {
 		return new ResponseEntity<>(publicationService.getPub(page, size), HttpStatus.OK);
+		
+			
 	}
 	@GetMapping("/nblikepub/{idPub}")
-	public int nbrLike(@PathVariable int idPub){
+	public Map<String, Integer> nbrLike(@PathVariable int idPub){
 		return publicationService.nbrLike(idPub);
 		
 	}
-	
-	@GetMapping("/maxnblikepub")
-	public Publication  maxnblike(){
-		return publicationService.maxnblike();
-		
-	}
+
 	
 	
 			

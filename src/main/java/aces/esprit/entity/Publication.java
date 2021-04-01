@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,14 +28,13 @@ public class Publication implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonIgnore
 	private int idPub;
-	
+
 	@NotEmpty(message = "Please provide a Title")
 	private String title;
-	
+
 	@NotEmpty(message = "Please provide a description for your Publication")
 	private String description;
-	
-	
+
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateCreation;
 

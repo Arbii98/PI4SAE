@@ -9,13 +9,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import aces.esprit.entity.Publication;
-import aces.esprit.entity.User;
+
 
 public interface PublicationRepository extends CrudRepository<Publication, Integer>{
 
 
 	@Query("select p from Publication p order by p.comments.size DESC")
-	List<Publication> getAllPublish();
+	List<Publication> getAllPublishByTopComment();
 	
 
 	@Query("select p from Publication p order by p.ratPub.size DESC")
@@ -30,6 +30,5 @@ public interface PublicationRepository extends CrudRepository<Publication, Integ
 	@Query("select p from Publication p order by dateCreation desc")
 	Page<Publication> getPub(Pageable pageable);
 	
-//	@Query(value = "SELECT count(rat) FROM Publication p  where p.idPub=:idPub and p.RatingPub.rat:=rat.LIKE")
-//	int getNbrLikes(@Param("idPub") int idPub);
+
 }

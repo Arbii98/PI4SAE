@@ -2,9 +2,6 @@ package aces.esprit.service;
 
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.data.domain.Pageable;
-
 import aces.esprit.entity.Publication;
 import aces.esprit.entity.RatingPub;
 
@@ -38,9 +35,7 @@ public interface PublicationService {
 
 	List<Publication> getAllPubByUser(int idUser);
 	
-	int nbrLike (int idPub);
-	int nbrDislike (int idPub);
-	
-	public Publication maxnblike();
+	Map<String, Integer>  nbrLike (int idPub);
+
 
 }

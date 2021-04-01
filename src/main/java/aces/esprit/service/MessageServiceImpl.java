@@ -35,7 +35,7 @@ public class MessageServiceImpl implements MessageService {
 
 
 	@Override
-	public void deleteChat(int idMsg) {
+	public boolean deleteChat(int idMsg) {
 		Message msg = this.messageRepository.findById(idMsg).orElse(null);
 		Date now = new Date();
 		if (!(new Date(msg.getDate().getYear(), msg.getDate().getMonth(),msg.getDate().getDay(), msg.getDate().getDate(),msg.getDate().getDate())
@@ -43,6 +43,7 @@ public class MessageServiceImpl implements MessageService {
 		{
 			messageRepository.deleteById(idMsg);
 		}
+		return false;
 		
 
 	}

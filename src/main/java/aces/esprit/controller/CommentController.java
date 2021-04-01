@@ -35,9 +35,9 @@ public class CommentController {
 
 	}
 
-	@PutMapping("{idPub}")
-	public void updateComment(@RequestBody Comment comment, @RequestBody String description) {
-		commentService.updateComment(comment, description);
+	@PutMapping()
+	public void updateComment(@RequestBody Comment comment) {
+		commentService.updateComment(comment);
 	}
 
 	@GetMapping("{idPub}")

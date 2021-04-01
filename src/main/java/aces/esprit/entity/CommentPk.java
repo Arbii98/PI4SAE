@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Past;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class CommentPk implements Serializable {
 	private int idPub;
 	private int idUser;
-	@Temporal(TemporalType.DATE)
-	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date datecreation;
 

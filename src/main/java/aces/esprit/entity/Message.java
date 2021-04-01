@@ -34,7 +34,7 @@ public class Message implements Serializable {
 	@JoinColumn(name = "id_receiver")
 	private User receiver;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	public int getIdMessage() {

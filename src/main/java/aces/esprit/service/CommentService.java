@@ -9,7 +9,7 @@ import aces.esprit.entity.RatingComment;
 public interface CommentService {
 	Comment addComment(Comment com);
 
-	void updateComment(Comment com, String description);
+	void updateComment(Comment com);
 
 	void deleteById(CommentPk commentpk);
 
