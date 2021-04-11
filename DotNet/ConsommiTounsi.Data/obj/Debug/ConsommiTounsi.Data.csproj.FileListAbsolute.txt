@@ -12,3 +12,17 @@ C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi
 C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.pdb
 C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.dll
 C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.pdb
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.dll.config
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.dll
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.pdb
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.dll
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.dll
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.pdb
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.xml
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csprojAssemblyReference.cache
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csproj.CoreCompileInputs.cache
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csproj.CopyComplete
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.dll
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.pdb
