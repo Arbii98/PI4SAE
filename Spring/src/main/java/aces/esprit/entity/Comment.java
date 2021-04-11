@@ -21,7 +21,7 @@ public class Comment implements Serializable {
 	}
 
 	@EmbeddedId
-
+//@JsonIgnore
 	private CommentPk commentPk;
 	@NotEmpty(message = "Please provide a description for your Comment")
 	private String description;
