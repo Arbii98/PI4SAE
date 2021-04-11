@@ -10,3 +10,5 @@ C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi
 C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csproj.CopyComplete
 C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.dll
 C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.pdb
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.pdb

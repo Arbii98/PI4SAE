@@ -1,0 +1,6 @@
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Domaine\bin\Debug\ConsommiTounsi.Domaine.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Domaine\bin\Debug\ConsommiTounsi.Domaine.pdb
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Domaine\obj\Debug\ConsommiTounsi.Domaine.csprojAssemblyReference.cache
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Domaine\obj\Debug\ConsommiTounsi.Domaine.csproj.CoreCompileInputs.cache
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Domaine\obj\Debug\ConsommiTounsi.Domaine.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Domaine\obj\Debug\ConsommiTounsi.Domaine.pdb
