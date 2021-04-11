@@ -1,0 +1,12 @@
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.dll.config
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.pdb
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.xml
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csprojAssemblyReference.cache
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csproj.CoreCompileInputs.cache
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.csproj.CopyComplete
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.dll
+C:\Users\Arbi\Documents\workspace-sts-3.9.4.RELEASE\PI4SAE\DotNet\ConsommiTounsi.Data\obj\Debug\ConsommiTounsi.Data.pdb
