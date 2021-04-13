@@ -10,9 +10,19 @@ namespace ConsommiTounsi.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Home";
 
             return View();
+        }
+
+        public ActionResult AdminTemplate()
+        {
+            return View("~/Views/Shared/BackOffice.cshtml");
+        }
+
+        public ActionResult Dashboard()
+        {
+            return View("~/Views/Home/Dashboard.cshtml");
         }
     }
 }
