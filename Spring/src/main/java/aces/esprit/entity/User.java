@@ -37,10 +37,41 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	//@JsonIgnore
 	private int id;
-
-	private int banned;
+	private String name;
+	@Column(columnDefinition = "MEDIUMTEXT")
+	private String image ;
 	
-	private boolean Block;
+	public String getImage() {
+		return image;
+	}
+
+
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@JsonIgnore
+	private int banned;
+
 
 
 
@@ -50,7 +81,7 @@ public class User implements Serializable {
 		super();
 		this.id = id;
 		this.banned = banned;
-		Block = block;
+	
 		this.messagesSent = messagesSent;
 		this.messagesReceived = messagesReceived;
 		this.rating = rating;
@@ -61,15 +92,15 @@ public class User implements Serializable {
 
 
 
-	public boolean isBlock() {
-		return Block;
-	}
 
 
 
-	public void setBlock(boolean block) {
-		Block = block;
-	}
+
+
+
+
+
+
 
 
 
