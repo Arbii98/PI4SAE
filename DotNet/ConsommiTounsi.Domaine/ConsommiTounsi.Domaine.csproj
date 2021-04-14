@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\entities Forum\Comment.cs" />
+    <Compile Include="Entities\entities Forum\CommentPk.cs" />
+    <Compile Include="Entities\entities Forum\Message.cs" />
+    <Compile Include="Entities\entities Forum\Publication.cs" />
+    <Compile Include="Entities\entities Forum\RatingPub.cs" />
+    <Compile Include="Entities\entities Forum\ratPub.cs" />
+    <Compile Include="Entities\entities Forum\User.cs" />
     <Compile Include="Entities\Product\Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
