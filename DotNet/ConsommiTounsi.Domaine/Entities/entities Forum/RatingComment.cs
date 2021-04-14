@@ -9,5 +9,6 @@ namespace ConsommiTounsi.Domaine.Entities.entities_Forum
     public class RatingComment
     {
         public int idR { get; set; }
+        public TypeRating typerating { get; set; }
     }
 }
