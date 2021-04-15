@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ConsommiTounsi.Domaine.Entities.Product.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nameCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionCategory)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var c in ViewBag.categories) {
+    <tr>
+        <td>
+            @c.nameCategory
+        </td>
+        <td>
+            @c.descriptionCategory
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=c.CategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=c.CategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=c.CategoryId })
+        </td>
+    </tr>
+}
+
+</table>

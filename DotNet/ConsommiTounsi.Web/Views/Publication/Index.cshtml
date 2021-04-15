@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ConsommiTounsi.Domaine.entities.entities_Forum.Publication>
+@{
+    ViewBag.Title = "Index";
+}
+<div>
+    @foreach (var p in ViewBag.result)
+    {
+        <div>
+            <img class="img-circle img-bordered-sm" src="data:image/jpeg;base64,@p.userp.image" alt="User Image">
+            <span class="username">
+
+                <a href="#">@p.userp.name  </a>
+            </span>
+            <span class="description"> Shared publicly - @p.dateCreation</span>
+
+
+
+        </div>
+
+        <p>
+            @p.description
+        </p>
+    }
+</div>
+
+
