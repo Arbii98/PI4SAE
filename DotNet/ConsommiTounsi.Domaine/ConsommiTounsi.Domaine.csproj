@@ -51,7 +51,6 @@
     <Compile Include="Entities\entities Forum\TypeRating.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Wided\Advertising.cs" />
-    <Compile Include="Entities\Wided\Archive.cs" />
     <Compile Include="Entities\Wided\Category.cs" />
     <Compile Include="Entities\Wided\Marque.cs" />
     <Compile Include="Entities\Wided\Product.cs" />
