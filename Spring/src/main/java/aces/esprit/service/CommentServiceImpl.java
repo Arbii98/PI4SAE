@@ -108,4 +108,9 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepository.countComment(idPub);
 	}
 
+	@Override
+	public List<Comment> getAllComment() {
+		return (List<Comment>) commentRepository.findAll();
+	}
+
 }

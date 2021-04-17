@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ConsommiTounsi.Domaine.entities;
+using ConsommiTounsi.Domaine.entities.entities_Forum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +12,8 @@ namespace ConsommiTounsi.Domaine.Entities.entities_Forum
     {
         public int idR { get; set; }
         public TypeRating typerating { get; set; }
+        public virtual Comment comment { get; set; }
+        public virtual User users { get; set; }
+
     }
 }

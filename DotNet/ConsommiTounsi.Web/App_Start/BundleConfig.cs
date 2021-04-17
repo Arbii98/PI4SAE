@@ -36,17 +36,36 @@ namespace ConsommiTounsi.Web
                           "~/Content/css/slick-theme.css",
                           "~/Content/css/nouislider.min.css",
                           "~/Content/css/font-awesome.min.css",
-                          "~/Content/css/style.css"));
+                          "~/Content/css/style.css",
+                         "~/Content/jss/css/style.css",
+                      "~/Content/lib/slick/slick-theme.css",
+                       "~/Content/lib/slick/slick.css",
+                       "~/Content/lib/slick/slick-theme.less",
+                       "~/Content/lib/slick/slick.less",
+                       "~/Content/css/AdminLTE.min.css",
+                       "~/Content/bootstrap/dist/css/bootstrap.min.css",
+                        "~/Content/font-awesome/css/font-awesome.min.css",
+                        "~/Content/lib/slick/fonts/slick.ttf"
 
-                bundles.Add(new StyleBundle("~/template/csss").Include(
+                      ));
+            var styleBundle = new StyleBundle("~/Content/Bundled")
+    .Include("~/Content/Bundled.css");
+
+            BundleTable.Bundles.Add(styleBundle);
+
+
+            bundles.Add(new StyleBundle("~/template/csss").Include(
 
 
                         "~/Content/bootstrap/dist/css/bootstrap.min.css",
                         "~/Content/font-awesome/css/font-awesome.min.css",
                         "~/Content/css/AdminLTE.min.css"
                      ));
+       
 
-                bundles.Add(new ScriptBundle("~/template/script").Include(
+          
+
+            bundles.Add(new ScriptBundle("~/template/script").Include(
                     "~/Content/js/jquery.min.js",
                     "~/Content/js/bootstrap.min.js",
                     "~/Content/js/slick.min.js",
@@ -54,7 +73,12 @@ namespace ConsommiTounsi.Web
                     "~/Content/js/jquery.zoom.min.js",
                     "~/Content/js/main.js",
                     "~/Content/jquery/jquery.min.js",
-                    "~/Content/js/adminlte.min.js"
+                    "~/Content/js/adminlte.min.js",
+                    "~/Content/jss/js/main.js",
+                    "~/Content/lib/slick/slick.js",
+                         "~/Content/lib/slick/slick.min.js",
+                         "~/Content/lib/easing/easing.js",
+                          "~/Content/lib/easing/easing.min.js"
                     ));
 
                 #endregion

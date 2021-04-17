@@ -2,25 +2,64 @@
 @{
     ViewBag.Title = "Index";
 }
-<div>
-    @foreach (var p in ViewBag.result)
-    {
-        <div>
+
+@foreach (var p in ViewBag.result)
+{
+    <div class="post clearfix">
+        <div class="user-block">
             <img class="img-circle img-bordered-sm" src="data:image/jpeg;base64,@p.userp.image" alt="User Image">
             <span class="username">
-
-                <a href="#">@p.userp.name  </a>
+                <a href="#">@p.userp.name </a>
             </span>
             <span class="description"> Shared publicly - @p.dateCreation</span>
+        </div>
+    </div>
 
+    <p>
+        @p.description
+    </p>
+    <ul >
+        <li> <br /></li>
+        <li class="pull-right">           
+                <i class="fa fa-comments-o margin-r-5"></i> Comments 
+        </li>
+    </ul>
 
+<div class="box-footer">
+
+    <form >
+        <p alt="Alt Text"></p>
+        <input id="idpub" name="idpub" value="@p.idPub" style="display: none;">
+        <div class="col-sm-9">
+            <div >
+                <input id="description" name="description" type="text" placeholder="Press enter to post comment">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+</div>
+<div class="box-footer box-comments">
+    @foreach (var com in p.comments)
+    {
+        <div class="box-comment">
+
+            <img class="img-circle img-sm" src="data:image/jpeg;base64,@com.user.image" alt="User Image">
+            <div class="comment-text">
+                <span class="username">
+                    @com.user.name
+                    <span class="text-muted pull-right">@com.commentPk.datecreation</span>
+                </span>
+                @com.description
+            </div>
 
         </div>
-
-        <p>
-            @p.description
-        </p>
     }
+    
 </div>
+}
+
+
 
 

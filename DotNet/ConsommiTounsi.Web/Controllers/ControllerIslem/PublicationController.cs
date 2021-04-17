@@ -1,11 +1,14 @@
 ﻿using ConsommiTounsi.Domaine.entities;
 using ConsommiTounsi.Domaine.entities.entities_Forum;
+using ConsommiTounsi.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ConsommiTounsi.Web.Controllers.ControllerIslem
 {
@@ -23,7 +26,7 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             HttpClient Client = new HttpClient();
             Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet/");
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage responce = Client.GetAsync("publication/getAllPublish").Result;
+            HttpResponseMessage responce = Client.GetAsync("publication/getAllPublishByTopComment").Result;
 
             if (responce.IsSuccessStatusCode)
             {
@@ -38,5 +41,33 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
 
             return View();
         }
+        // GET: Publication/Create
+        public ActionResult Create()
+        {
+            
+            return View();
+        }
+        // POST: Publication/Create
+        [HttpPost]
+        public ActionResult Create(PublicationVm Publi)
+        {
+           
+          
+            HttpClient client = new HttpClient();
+
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8081/SpringMVC/servlet/publication/1");
+            string json = new JavaScriptSerializer().Serialize(new
+            {
+                title = Publi.title,
+                description = Publi.description,
+               
+            }) ;
+
+            requestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.SendAsync(requestMessage).GetAwaiter().GetResult();
+            return View();
+            }
+            
+        }
     }
-}

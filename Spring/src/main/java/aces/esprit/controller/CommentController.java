@@ -49,5 +49,9 @@ public class CommentController {
 	public Long countComment(@PathVariable int idPub) {
 		return commentService.countComment(idPub);
 	}
+	@GetMapping(value = "/getall")
+	public List<Comment> getAllComment() {
+		return commentService.getAllComment();
+	}
 
 }

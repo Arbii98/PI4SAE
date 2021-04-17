@@ -265,3 +265,4 @@ C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Web\obj\Debug\Conso
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Web\obj\Debug\ConsommiTounsi.Web.csproj.CopyComplete
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Web\obj\Debug\ConsommiTounsi.Web.dll
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Web\obj\Debug\ConsommiTounsi.Web.pdb
+C:\Users\islem\AppData\Local\GitHubDesktop\app-2.5.2\PI4SAE\DotNet\ConsommiTounsi.Web\bin\Json.Net.dll

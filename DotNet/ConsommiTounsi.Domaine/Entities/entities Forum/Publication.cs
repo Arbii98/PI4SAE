@@ -13,7 +13,8 @@ namespace ConsommiTounsi.Domaine.entities.entities_Forum
         public string description { get; set; }
         public DateTime dateCreation { get; set; }
         public virtual User userp { get; set; }
-        virtual public ICollection<Comment> comments { get; set; }
+        public virtual ICollection<Comment> comments { get; set; }
+        public virtual ICollection<RatingPub> ratPub { get; set; }
         
     }
 }

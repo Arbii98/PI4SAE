@@ -32,5 +32,5 @@ namespace ConsommiTounsi.Web.Controllers.Product_Controller
             return View();
         }
     }
-       
+
 }

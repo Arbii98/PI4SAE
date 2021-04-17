@@ -15,6 +15,7 @@ namespace ConsommiTounsi.Web.Controllers
             return View();
         }
 
+
         public ActionResult AdminTemplate()
         {
             return View("~/Views/Shared/BackOffice.cshtml");
@@ -23,6 +24,13 @@ namespace ConsommiTounsi.Web.Controllers
         public ActionResult Dashboard()
         {
             return View("~/Views/Home/Dashboard.cshtml");
+        }
+        public ActionResult ClientTemplate()
+        {
+            ViewBag.Title = "Home ";
+
+            return View();
+
         }
     }
 }

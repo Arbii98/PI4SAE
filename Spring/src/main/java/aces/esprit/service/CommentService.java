@@ -13,7 +13,7 @@ public interface CommentService {
 
 	void deleteById(CommentPk commentpk);
 
-
+	List<Comment> getAllComment();
 
 	List<Comment> getCommentByIdPublication(int idPub);
 

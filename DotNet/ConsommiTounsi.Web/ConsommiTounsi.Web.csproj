@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Json.Net, Version=1.0.25.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.1.0.25\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -54,6 +57,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -155,13 +159,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ControllerIslem\ChatController.cs" />
+    <Compile Include="Controllers\ControllerIslem\commentController.cs" />
     <Compile Include="Controllers\ControllerIslem\PublicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Wided_Controller\CategoryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\Wided_Controller\CategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PublicationVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +211,80 @@
     <Content Include="Content\css\slick-theme.css" />
     <Content Include="Content\css\slick.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\ams.png" />
+    <Content Include="Content\img\brand-1.png" />
+    <Content Include="Content\img\brand-2.png" />
+    <Content Include="Content\img\brand-3.png" />
+    <Content Include="Content\img\brand-4.png" />
+    <Content Include="Content\img\brand-5.png" />
+    <Content Include="Content\img\brand-6.png" />
+    <Content Include="Content\img\category-1.jpg" />
+    <Content Include="Content\img\category-2.jpg" />
+    <Content Include="Content\img\category-3.jpg" />
+    <Content Include="Content\img\category-4.jpg" />
+    <Content Include="Content\img\category-5.jpg" />
+    <Content Include="Content\img\category-6.jpg" />
+    <Content Include="Content\img\category-7.jpg" />
+    <Content Include="Content\img\category-8.jpg" />
+    <Content Include="Content\img\cerealis.png" />
+    <Content Include="Content\img\consomi.png" />
+    <Content Include="Content\img\exist.jpg" />
+    <Content Include="Content\img\fashion.png" />
+    <Content Include="Content\img\godaddy.svg" />
+    <Content Include="Content\img\HA.png" />
+    <Content Include="Content\img\hotdeal.png" />
+    <Content Include="Content\img\jadida.jfif" />
+    <Content Include="Content\img\lepidor.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\mabrouk.png" />
+    <Content Include="Content\img\made.jpg" />
+    <Content Include="Content\img\materna.jfif" />
+    <Content Include="Content\img\mayeda.png" />
+    <Content Include="Content\img\norton.svg" />
+    <Content Include="Content\img\payment-method.png" />
+    <Content Include="Content\img\product-1.jpg" />
+    <Content Include="Content\img\product-10.jpg" />
+    <Content Include="Content\img\product-2.jpg" />
+    <Content Include="Content\img\product-3.jpg" />
+    <Content Include="Content\img\product-4.jpg" />
+    <Content Include="Content\img\product-5.jpg" />
+    <Content Include="Content\img\product-6.jpg" />
+    <Content Include="Content\img\product-7.jpg" />
+    <Content Include="Content\img\product-8.jpg" />
+    <Content Include="Content\img\product-9.jpg" />
+    <Content Include="Content\img\product01.png" />
+    <Content Include="Content\img\product02.png" />
+    <Content Include="Content\img\product03.png" />
+    <Content Include="Content\img\product04.png" />
+    <Content Include="Content\img\product05.png" />
+    <Content Include="Content\img\product06.png" />
+    <Content Include="Content\img\product07.png" />
+    <Content Include="Content\img\product08.png" />
+    <Content Include="Content\img\product09.png" />
+    <Content Include="Content\img\randa.png" />
+    <Content Include="Content\img\review-1.jpg" />
+    <Content Include="Content\img\review-2.jpg" />
+    <Content Include="Content\img\review-3.jpg" />
+    <Content Include="Content\img\shop01.png" />
+    <Content Include="Content\img\shop02.png" />
+    <Content Include="Content\img\shop03.png" />
+    <Content Include="Content\img\slider-1.jpg" />
+    <Content Include="Content\img\slider-2.jpg" />
+    <Content Include="Content\img\slider-3.jpg" />
+    <Content Include="Content\img\ssl.svg" />
+    <Content Include="Content\img\tounsi.png" />
+    <Content Include="Content\img\tun.png" />
+    <Content Include="Content\img\warda.png" />
+    <Content Include="Content\jss\css\style.css" />
+    <Content Include="Content\jss\js\main.js" />
+    <Content Include="Content\lib\easing\easing.js" />
+    <Content Include="Content\lib\easing\easing.min.js" />
+    <Content Include="Content\lib\slick\ajax-loader.gif" />
+    <Content Include="Content\lib\slick\fonts\slick.svg" />
+    <Content Include="Content\lib\slick\slick-theme.css" />
+    <Content Include="Content\lib\slick\slick.css" />
+    <Content Include="Content\lib\slick\slick.js" />
+    <Content Include="Content\lib\slick\slick.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -331,6 +413,16 @@
     <Content Include="Content\bootstrap\nuget\MyGet.ps1" />
     <Content Include="Content\bootstrap\package.json" />
     <Content Include="Content\bootstrap\README.md" />
+    <Content Include="Content\lib\slick\config.rb" />
+    <Content Include="Content\lib\slick\fonts\slick.eot" />
+    <Content Include="Content\lib\slick\fonts\slick.ttf" />
+    <Content Include="Content\lib\slick\fonts\slick.woff" />
+    <Content Include="Content\lib\slick\slick-theme.less" />
+    <Content Include="Content\lib\slick\slick-theme.scss" />
+    <Content Include="Content\lib\slick\slick.less" />
+    <Content Include="Content\lib\slick\slick.scss" />
+    <Content Include="Content\img\kaiser.jpg.crdownload" />
+    <Content Include="Content\Bundled.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -352,10 +444,16 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Publication\Index.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Publication\Create.cshtml" />
+    <Content Include="Views\Home\ClientTemplate.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Shared\BackOffice.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\page\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

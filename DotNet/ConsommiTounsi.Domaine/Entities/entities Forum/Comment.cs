@@ -11,7 +11,9 @@ namespace ConsommiTounsi.Domaine.entities.entities_Forum
         public CommentPk commentPk { get; set; }
         public string description { get; set; }
 
-        public virtual User users { get; set; }
+        public virtual User user { get; set; }
+        public virtual Publication publication { get; set; }
+        
 
     }
 }
