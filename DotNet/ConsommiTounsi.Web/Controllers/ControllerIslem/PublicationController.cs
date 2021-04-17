@@ -41,6 +41,17 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
 
             return View();
         }
+        // GET: Publication/Delete/5
+        public ActionResult Delete(int idPub)
+        {
+
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage responce = Client.DeleteAsync("/publication/" + idPub).Result;
+            return RedirectToAction("Index");
+
+        }
         // GET: Publication/Create
         public ActionResult Create()
         {
@@ -58,7 +69,7 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8081/SpringMVC/servlet/publication/1");
             string json = new JavaScriptSerializer().Serialize(new
             {
-                title = Publi.title,
+                title = "test",
                 description = Publi.description,
                
             }) ;
