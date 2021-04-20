@@ -51,10 +51,10 @@
     <Compile Include="Entities\entities Forum\ratPub.cs" />
     <Compile Include="Entities\entities Forum\TypeRating.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\Wided\Advertising.cs" />
-    <Compile Include="Entities\Wided\Category.cs" />
-    <Compile Include="Entities\Wided\Marque.cs" />
-    <Compile Include="Entities\Wided\Product.cs" />
+    <Compile Include="Entities\Product\Advertising.cs" />
+    <Compile Include="Entities\Product\Category.cs" />
+    <Compile Include="Entities\Product\Marque.cs" />
+    <Compile Include="Entities\Product\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
