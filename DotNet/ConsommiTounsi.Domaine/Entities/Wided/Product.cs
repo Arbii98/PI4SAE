@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,17 +18,26 @@ namespace ConsommiTounsi.Domaine.Entities.Wided
     public class Product
     {
         //Proprietés de Base
-        public int ProductId { get; set; }
+        public int? ProductId { get; set; }
+
+        [Display(Name = "Image")]
+        public string imageFileNameProduct { get; set; }
+        [Display(Name = "Name")]
         public string nameProduct { get; set; }
+        [Display(Name = "Price")]
         public float priceProduct { get; set; }
-        //Date
         public DateTime dateCreationProduct { get; set; }
         public DateTime dateEndNewProduct { get; set; }
-        public string imageFileNameProduct { get; set; }
+        
+        [Display(Name = "Barcode image")]
         public string imageBarcodeFileNameProduct { get; set; }
+        [Display(Name = "Barcode")]
         public string barcodeProduct { get; set; }
+        [Display(Name = "QrCode")]
         public string qrCodeImageProduct { get; set; }
+        [Display(Name = "Gender")]
         public GenderRecommandation gender { get; set; }
+        [Display(Name = "Age")]
         public AgeRecommandation age { get; set; }
 
         //Proprietés de Navigation
