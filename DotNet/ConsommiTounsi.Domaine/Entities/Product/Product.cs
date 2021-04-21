@@ -43,7 +43,7 @@ namespace ConsommiTounsi.Domaine.Entities.Wided
         //Proprietés de Navigation
         public Category category { get; set; }
         public Marque marque { get; set; }
-        public virtual ICollection<Advertising> advertisings { get; set; }
+        public virtual ICollection<Advertising> Advertisings { get; set; }
 
     }
 }
