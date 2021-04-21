@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Advertising\Advertising.cs" />
     <Compile Include="Entities\entities Forum\Comment.cs" />
     <Compile Include="Entities\entities Forum\CommentPk.cs" />
     <Compile Include="Entities\entities Forum\Message.cs" />
@@ -51,7 +52,6 @@
     <Compile Include="Entities\entities Forum\ratPub.cs" />
     <Compile Include="Entities\entities Forum\TypeRating.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\Product\Advertising.cs" />
     <Compile Include="Entities\Product\Category.cs" />
     <Compile Include="Entities\Product\Marque.cs" />
     <Compile Include="Entities\Product\Product.cs" />

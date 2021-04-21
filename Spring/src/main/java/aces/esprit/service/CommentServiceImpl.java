@@ -43,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment addComment(Comment com) {
+	public Comment addComment(Comment com ) {
 
 		Publication publication = publicationRepository.findById(com.getCommentPk().getIdPub()).orElse(null);
 		User user = userRepository.findById(com.getCommentPk().getIdUser()).orElse(null);
@@ -51,6 +51,7 @@ public class CommentServiceImpl implements CommentService {
 		if (publication != null && user != null && (user.getBanned() < 3)) {
 
 			if (FilterBW.filterText(com.getDescription()).size() < 3) {
+				
 				com.setDescription(FilterBW.filterWord(com.getDescription()));
 				return commentRepository.save(com);
 			} else 

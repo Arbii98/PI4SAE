@@ -171,6 +171,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PublicationVm.cs" />
+    <Compile Include="Models\UserVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -451,9 +452,14 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\BackOffice.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+
+    <Content Include="Views\comment\Create.cshtml" />
+    <Content Include="Views\Publication\Edit.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
