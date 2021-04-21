@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using ConsommiTounsi.Domaine.Entities.Wided;
+using ConsommiTounsi.Domaine.Entities.Product;
 
 namespace ConsommiTounsi.Web.Controllers
 {
