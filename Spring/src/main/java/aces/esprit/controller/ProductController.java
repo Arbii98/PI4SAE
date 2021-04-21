@@ -89,7 +89,7 @@ public class ProductController {
 		//generate QRCode
 		String imageQRCodeName = "QRCode"+name+".png";
 		iProductService.genrateAndDownloadQRCode(name, 200, 200, "./src/main/webapp/QRCodeGenerator/"+imageQRCodeName);
-		return iProductService.ajouterProduit(name, fileName_image_barcode, barcode, fileName_image_product, imageQRCodeName, description, price, age, gender);
+		return iProductService.ajouterProduit(name, fileName_image_barcode, barcode, path_product, imageQRCodeName, description, price, age, gender);
 
 	}
 	

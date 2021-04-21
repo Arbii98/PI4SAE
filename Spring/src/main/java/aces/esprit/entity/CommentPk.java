@@ -18,12 +18,12 @@ public class CommentPk implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date datecreation;
 
-	public CommentPk(int idPub, int idUser, Date datecreation) {
+	public CommentPk(int idPub, int idUser) {
 		super();
 		this.idPub = idPub;
 		this.idUser = idUser;
 
-		this.datecreation = datecreation;
+		this.datecreation = new Date();
 	}
 
 	public Date getDatecreation() {

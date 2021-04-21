@@ -42,28 +42,31 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             return View();
         }
         // GET: Publication/Delete/5
+
         public ActionResult Delete(int idPub)
         {
 
             HttpClient Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet");
+            Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet/");
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage responce = Client.DeleteAsync("/publication/" + idPub).Result;
+            HttpResponseMessage responce = Client.DeleteAsync("publication/" + idPub).Result;
             return RedirectToAction("Index");
 
         }
-        // GET: Publication/Create
+
+
+
         public ActionResult Create()
         {
-            
+
             return View();
         }
         // POST: Publication/Create
         [HttpPost]
         public ActionResult Create(PublicationVm Publi)
         {
-           
-          
+
+
             HttpClient client = new HttpClient();
 
             HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8081/SpringMVC/servlet/publication/1");
@@ -71,14 +74,45 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             {
                 title = "test",
                 description = Publi.description,
-               
-            }) ;
+
+            });
 
             requestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = client.SendAsync(requestMessage).GetAwaiter().GetResult();
             return View();
-            }
-            
         }
+
+
+
+        [HttpPost]
+        public ActionResult Edit(PublicationVm Publi, int idPub)
+        {
+
+
+            HttpClient client = new HttpClient();
+
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Put, "http://localhost:8081/SpringMVC/servlet/publication/"+idPub);
+            string json = new JavaScriptSerializer().Serialize(new
+            {
+                title = "test",
+                description = Publi.description,
+
+            });
+
+            requestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.SendAsync(requestMessage).GetAwaiter().GetResult();
+            return View();
+        }
+        public ActionResult Edit()
+        {
+
+            return View();
+        }
+
     }
+}
+    
+
+

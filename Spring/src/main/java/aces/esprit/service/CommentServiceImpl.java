@@ -1,5 +1,6 @@
 package aces.esprit.service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -43,15 +44,17 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment addComment(Comment com) {
-
-		Publication publication = publicationRepository.findById(com.getCommentPk().getIdPub()).orElse(null);
-		User user = userRepository.findById(com.getCommentPk().getIdUser()).orElse(null);
+	public Comment addComment(Comment com ) {
+		CommentPk cm = com.getCommentPk();
+		Publication publication = publicationRepository.findById(cm.getIdPub()).orElse(null);
+		User user = userRepository.findById(cm.getIdUser()).orElse(null);
 		FilterBW.loadConfigs();
 		if (publication != null && user != null && (user.getBanned() < 3)) {
 
 			if (FilterBW.filterText(com.getDescription()).size() < 3) {
+				
 				com.setDescription(FilterBW.filterWord(com.getDescription()));
+				cm.setDatecreation(new Date());
 				return commentRepository.save(com);
 			} else 
 			{

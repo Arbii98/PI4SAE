@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsommiTounsi.Domaine.Entities.Wided;
+using ConsommiTounsi.Domaine.Entities.Product;
 
-namespace ConsommiTounsi.Domaine.Entities.Wided
+namespace ConsommiTounsi.Domaine.Entities.Product
 {
     public class Category
     {

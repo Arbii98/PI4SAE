@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PublicationVm.cs" />
+    <Compile Include="Models\UserVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -455,7 +456,13 @@
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Event\Index.cshtml" />
+=======
+    <Content Include="Views\comment\Create.cshtml" />
+    <Content Include="Views\Publication\Edit.cshtml" />
+    <Content Include="Views\Product\IndexStat.cshtml" />
+>>>>>>> 711ec663f687291155f5fe8737b2f34ffd744f07
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
