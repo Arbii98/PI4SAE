@@ -1,9 +1,8 @@
-﻿using ConsommiTounsi.Domaine.Entities.Product;
+﻿using ConsommiTounsi.Domaine.Entities.Wided;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,8 +30,6 @@ namespace ConsommiTounsi.Web.Controllers
 
             return View();
         }
-
-       
 
         // GET: Product/Details/5
         public ActionResult Details(int id)
@@ -105,44 +102,5 @@ namespace ConsommiTounsi.Web.Controllers
                 return View();
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: Statistiques
-        public ActionResult IndexStat()
-        {
-
-            HttpClient Client = new HttpClient();
-            Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet/");
-            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = Client.GetAsync("manStatistics").Result;
-            HttpResponseMessage response2 = Client.GetAsync("womanStatistics").Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                ViewBag.statM = response.Content.ReadAsAsync<float>().Result;
-                ViewBag.statW = response2.Content.ReadAsAsync<float>().Result;
-            }
-            else
-            {
-                ViewBag.statM = "error";
-                ViewBag.statW = "error";
-            }
-
-            return View();
-        }
-
-       
     }
 }

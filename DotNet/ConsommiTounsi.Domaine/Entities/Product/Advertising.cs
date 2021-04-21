@@ -4,11 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
 namespace ConsommiTounsi.Domaine.Entities.Wided
-=======
-namespace ConsommiTounsi.Domaine.Entities.Product
->>>>>>> 711ec663f687291155f5fe8737b2f34ffd744f07
 {
     public enum SponsorType
     {

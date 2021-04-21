@@ -50,13 +50,9 @@
     <Compile Include="Entities\entities Forum\RatingPub.cs" />
     <Compile Include="Entities\entities Forum\ratPub.cs" />
     <Compile Include="Entities\entities Forum\TypeRating.cs" />
-<<<<<<< HEAD
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\User.cs" />
-=======
->>>>>>> 711ec663f687291155f5fe8737b2f34ffd744f07
     <Compile Include="Entities\Product\Advertising.cs" />
-    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Product\Category.cs" />
     <Compile Include="Entities\Product\Marque.cs" />
     <Compile Include="Entities\Product\Product.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsommiTounsi.Domaine.Entities.Product
+namespace ConsommiTounsi.Domaine.Entities.Wided
 {
     public class Marque
     {

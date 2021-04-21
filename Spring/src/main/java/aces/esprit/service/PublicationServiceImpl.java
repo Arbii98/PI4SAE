@@ -62,7 +62,6 @@ public class PublicationServiceImpl implements PublicationService {
 	public Publication updatePublication(Publication pub, int idPub) {
 		if (publicationRepository.findById(idPub).orElse(null) != null) {
 			Publication p = publicationRepository.findById(idPub).orElse(null);
-			pub.setDateCreation(new Date());
 			pub.setUserp(p.getUserp());
 			pub.setIdPub(idPub);
 			return publicationRepository.save(pub);

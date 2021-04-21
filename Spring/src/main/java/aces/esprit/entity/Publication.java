@@ -26,6 +26,7 @@ public class Publication implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private int idPub;
 
 	@NotEmpty(message = "Please provide a Title")
