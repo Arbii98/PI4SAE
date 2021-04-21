@@ -13,7 +13,6 @@ namespace ConsommiTounsi.Domaine.entities
         public string name { get; set; }
         public string image { get; set; }
 
-
         public User(int id, string name, string image)
         {
             this.id = id;
