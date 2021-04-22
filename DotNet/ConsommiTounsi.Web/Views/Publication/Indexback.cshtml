@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ConsommiTounsi.Domaine.entities.entities_Forum.Publication>
+@using ConsommiTounsi.Web.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/BackOffice.cshtml";
+}
+@{
+    UserVm userc = new UserVm(2, "slayem", "");
+    Session["userConnected"] = userc as UserVm;
+
+
+}
+<br />
+<br />
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">List Publication</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.dateCreation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.userp.name)
+                            </th>
+                         
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                            @foreach (var item in ViewBag.result)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.description
+                                    </td>
+                                    <td>
+                                        @item.dateCreation
+                                    </td>
+                                    <td>
+                                        @item.userp.name
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("chart", "view chart")
+
+                                    </td>
+                                 
+                                
+                                    <td>
+                                        <button type="button" class="btn btn-danger">
+                                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                                <i class="mdi mdi-delete"></i>
+                                            </div>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

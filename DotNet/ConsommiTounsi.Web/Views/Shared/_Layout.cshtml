@@ -59,7 +59,15 @@
                     <div class="navbar-nav mr-auto">
                         <a href="@Url.Action("Home", "Home/ClientTemplate")" class="nav-item nav-link active">Home</a>
                         <a href="" class="nav-item nav-link">Products</a>
-                        <a href="" class="nav-item nav-link">Forum</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Forum</a>
+                            <div class="dropdown-menu">
+                                <a href="@Url.Action("Publication", "Publication/Index")" class="dropdown-item">Home</a>
+                                <a href="@Url.Action("Publication", "Publication/IndexUser")" class="dropdown-item">Profile</a>
+                                <a href="" class="dropdown-item">chat &amp; discussion</a>
+
+                            </div>
+                        </div>
                         <a href="" class="nav-item nav-link">Cart</a>
                         <a href="" class="nav-item nav-link">Checkout</a>
                         <a href="" class="nav-item nav-link">My Account</a>
