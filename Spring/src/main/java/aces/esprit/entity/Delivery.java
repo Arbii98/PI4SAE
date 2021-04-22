@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
+import com.auth0.jwt.internal.com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -28,6 +30,8 @@ public class Delivery implements Serializable {
 	@ManyToOne
 	private DeliveryMan livreur;
 	
+	
+	@JsonIgnore
 	@OneToOne
 	private Commande commande;
 	

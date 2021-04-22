@@ -17,8 +17,12 @@ import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Component
+@JsonIgnoreProperties(value = { "produit" })
 public class Stock  implements Serializable {
 
 	@Id
@@ -30,6 +34,7 @@ public class Stock  implements Serializable {
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "id_produit")
+	@JsonIgnore
 	private Product produit;
 	
 	private float prixAchat;

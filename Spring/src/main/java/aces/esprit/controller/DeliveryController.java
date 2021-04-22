@@ -111,6 +111,15 @@ public class DeliveryController {
 		return ds.getHistoryDeliveries();
 	}
 	
+	@GetMapping("/countHistoryDeliveries")
+	@ResponseBody
+	public int countHistoryDeliveries(){
+		return ds.getHistoryDeliveries().size();
+	}
+	
+	
+	
+	
 	
 	@GetMapping("/getTempsAttenteDelivery/{idDelivery}")
 	@ResponseBody

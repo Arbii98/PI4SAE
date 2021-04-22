@@ -163,6 +163,8 @@
     <Compile Include="Controllers\ControllerIslem\ChatController.cs" />
     <Compile Include="Controllers\ControllerIslem\commentController.cs" />
     <Compile Include="Controllers\ControllerIslem\PublicationController.cs" />
+    <Compile Include="Controllers\DeliveryController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -454,6 +456,8 @@
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Delivery\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
