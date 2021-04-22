@@ -17,6 +17,30 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
         HttpClient httpClient;
         string baseAddress;
         User userc;
+        public ActionResult Indexback()
+        {
+            userc = new User(1, "Islem", "");
+            Session["userConnected"] = userc;
+
+            // GET: Publishes
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet/");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage responce = Client.GetAsync("publication/getAllPublishByTopComment").Result;
+
+            if (responce.IsSuccessStatusCode)
+            {
+                IEnumerable<Publication> lstpub = responce.Content.ReadAsAsync<IEnumerable<Publication>>().Result;
+                ViewBag.result = lstpub;
+                ViewBag.user = Session["userConnected"] as User;
+            }
+            else
+            {
+                ViewBag.pub = "error";
+            }
+
+            return View();
+        }
         public ActionResult Index()
         {
             userc = new User(1, "Islem", "");
@@ -31,6 +55,34 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             if (responce.IsSuccessStatusCode)
             {
                 IEnumerable<Publication> lstpub = responce.Content.ReadAsAsync<IEnumerable<Publication>>().Result;
+                ViewBag.result = lstpub;
+                ViewBag.user = Session["userConnected"] as User;
+            }
+            else
+            {
+                ViewBag.pub = "error";
+            }
+
+            return View();
+        }
+        public ActionResult IndexUser()
+        {
+            userc = new User(1, "Islem", "");
+            Session["userConnected"] = userc;
+
+            // GET: Publishes
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:8081/SpringMVC/servlet/");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage responce = Client.GetAsync("publication/getallbubbyuser/2").Result;
+
+            if (responce.IsSuccessStatusCode)
+            {
+                
+                IEnumerable<Publication> lstpub = responce.Content.ReadAsAsync<IEnumerable<Publication>>().Result;
+                var newList = lstpub.OrderByDescending(x => x.dateCreation)
+                   
+                   .ToList();
                 ViewBag.result = lstpub;
                 ViewBag.user = Session["userConnected"] as User;
             }
@@ -77,8 +129,41 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             requestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = client.SendAsync(requestMessage).GetAwaiter().GetResult();
+
             return View();
             }
             
         }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Edit(PublicationVm Publi, int idPub)
+        {
+
+
+            HttpClient client = new HttpClient();
+
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Put, "http://localhost:8081/SpringMVC/servlet/publication/"+idPub);
+            string json = new JavaScriptSerializer().Serialize(new
+            {
+                title = "test",
+                description = Publi.description,
+
+            });
+
+            requestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = client.SendAsync(requestMessage).GetAwaiter().GetResult();
+            return RedirectToAction("Index", "Publication");
+        }
+        public ActionResult Edit()
+        {
+
+            return View();
+        }
+
     }
