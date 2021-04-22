@@ -78,10 +78,10 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
 
             if (responce.IsSuccessStatusCode)
             {
-                
+
                 IEnumerable<Publication> lstpub = responce.Content.ReadAsAsync<IEnumerable<Publication>>().Result;
                 var newList = lstpub.OrderByDescending(x => x.dateCreation)
-                   
+
                    .ToList();
                 ViewBag.result = lstpub;
                 ViewBag.user = Session["userConnected"] as User;
@@ -107,15 +107,15 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
         // GET: Publication/Create
         public ActionResult Create()
         {
-            
+
             return View();
         }
         // POST: Publication/Create
         [HttpPost]
         public ActionResult Create(PublicationVm Publi)
         {
-           
-          
+
+
             HttpClient client = new HttpClient();
 
             HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8081/SpringMVC/servlet/publication/1");
@@ -123,20 +123,18 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             {
                 title = "test",
                 description = Publi.description,
-               
-            }) ;
+
+            });
 
             requestMessage.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = client.SendAsync(requestMessage).GetAwaiter().GetResult();
-
-            return View();
-            }
-            
-        }
-
             return RedirectToAction("Index");
         }
+
+
+
+
 
 
 
@@ -147,7 +145,7 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
 
             HttpClient client = new HttpClient();
 
-            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Put, "http://localhost:8081/SpringMVC/servlet/publication/"+idPub);
+            HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Put, "http://localhost:8081/SpringMVC/servlet/publication/" + idPub);
             string json = new JavaScriptSerializer().Serialize(new
             {
                 title = "test",
@@ -165,5 +163,5 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
 
             return View();
         }
-
+    }
     }
