@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ConsommiTounsi.Domaine.Entities.Wided.Product>
+﻿@model IEnumerable<ConsommiTounsi.Domaine.Entities.Product.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -57,7 +57,9 @@
                         {
                         <tr>
                             <td>
-                                @item.imageFileNameProduct
+                                @{string path = "~/Content/Uploads/" + @item.imageFileNameProduct;}
+
+                                <img src="@Url.Content(path)" width="50" height="50" />
                             </td>
                             <td>
                                 @item.nameProduct

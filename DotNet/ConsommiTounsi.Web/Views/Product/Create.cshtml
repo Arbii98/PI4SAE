@@ -1,0 +1,69 @@
+﻿@model ConsommiTounsi.Domaine.Entities.Product.Product
+
+@{
+    Layout = "~/Views/Shared/BackOffice.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Product</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    @ViewBag.Wided
+        
+    <div class="form-group">
+        @Html.LabelFor(model => model.imageFileNameProduct, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("file", "", new { type = "file" })
+            @Html.ValidationMessageFor(model => model.imageFileNameProduct, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nameProduct, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nameProduct, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nameProduct, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.priceProduct, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.priceProduct, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.priceProduct, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.imageBarcodeFileNameProduct, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.imageBarcodeFileNameProduct, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.imageBarcodeFileNameProduct, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.barcodeProduct, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.barcodeProduct, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.barcodeProduct, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
