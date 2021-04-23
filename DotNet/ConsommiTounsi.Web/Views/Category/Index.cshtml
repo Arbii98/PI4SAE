@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ConsommiTounsi.Domaine.Entities.Wided.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/BackOffice.cshtml";
+}
+
+<h2>Category</h2>
+
+<div class="content-wrapper pb-0">
+    <div class="page-header flex-wrap">
+
+        <div class="header-right d-flex flex-wrap mt-md-2 mt-lg-0">
+
+            <button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+                <i class="mdi mdi-plus-circle"></i>
+                @Html.ActionLink("Create New", "Create")
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">List Categories</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.nameCategory)</th>
+                            <th>@Html.DisplayNameFor(model => model.descriptionCategory)</th>
+                            <th>others</th>
+                            <th>Edit</th>
+                            <th>Details</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in ViewBag.categories)
+                        {
+                            <tr>
+                                <td>
+                                    @c.nameCategory
+                                </td>
+                                <td>
+                                    @c.descriptionCategory
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = c.CategoryId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = c.CategoryId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = c.CategoryId })
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary">
+                                        <div class="col-sm-6 col-md-4 col-lg-3">
+                                            <i class="mdi mdi-rename-box"></i>
+                                        </div>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary">
+                                        <div class="col-sm-6 col-md-4 col-lg-3">
+                                            <i class="mdi mdi-file-document-box"></i>
+                                        </div>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">
+                                        <div class="col-sm-6 col-md-4 col-lg-3">
+                                            <i class="mdi mdi-delete"></i>
+                                        </div>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        Pie charts are very popular for showing a compact overview of a
+        composition or comparison. While they can be harder to read than
+        column charts, they remain a popular choice for small datasets.
+    </p>
+</figure>
