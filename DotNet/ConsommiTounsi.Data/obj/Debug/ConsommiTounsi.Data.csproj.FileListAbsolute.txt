@@ -30,8 +30,6 @@ C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\Cons
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.dll
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Data.pdb
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.dll
-C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.dll
-C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\ConsommiTounsi.Domaine.pdb
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.xml
 C:\Users\wided\Documents\GitHub\PI4SAE\DotNet\ConsommiTounsi.Data\bin\Debug\EntityFramework.SqlServer.xml
