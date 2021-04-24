@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<ConsommiTounsi.Domaine.entities.entities_Forum.Publication>
-@using ConsommiTounsi.Web.Models
+@using ConsommiTounsi.Domaine.entities
 @{
     ViewBag.Title = "Index";
 }
 @{
-    UserVm userc = new UserVm(1, "Islem", "");
-    Session["userConnected"] = userc as UserVm;
+    User userc = new User(1, "Islem", "");
+    Session["userConnected"] = userc as User;
 
 
 }

@@ -87,6 +87,9 @@ namespace ConsommiTounsi.Web.Controllers.ControllerIslem
             }
         }
        
-
+        public ActionResult Delete()
+        {
+            return View();
+        }
     }
 }
