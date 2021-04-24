@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using ConsommiTounsi.Domaine.Entities.Wided;
+using ConsommiTounsi.Domaine.Entities.Product;
 
 namespace ConsommiTounsi.Web.Controllers
 {
@@ -53,16 +53,9 @@ namespace ConsommiTounsi.Web.Controllers
         [HttpPost]
         public ActionResult Create(Category category)
         {
-            try
-            {
-
-                //var APIResponse = HttpClient.PostAsJsonAsync<Category>("http://localhost:8081/SpringMVC/servlet" + "/category/", category).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode());*/
-                return RedirectToAction(" Index ");
-            }
-            catch
-            {
+           
                 return View();
-            }
+            
         }
 
     }
