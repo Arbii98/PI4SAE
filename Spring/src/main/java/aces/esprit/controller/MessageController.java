@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import aces.esprit.entity.Message;
+import aces.esprit.entity.MessageDTO;
+import aces.esprit.entity.MessageDTO2;
 import aces.esprit.service.MessageService;
 
 @RestController
@@ -28,15 +30,19 @@ public class MessageController {
 	@Autowired
 	MessageService messageservice;
 	
-	@PostMapping("{idUser}/{idReceiver}")
-	public void addChat(@Valid @RequestBody String content ,@PathVariable int idUser,@PathVariable int idReceiver) {
-		messageservice.addChat(content, idUser, idReceiver) ;
+	@PostMapping
+	public void addChat(@RequestBody MessageDTO msg) {
+		messageservice.addChat(msg.getContent(), msg.getIdsender(), msg.getIdreciver()) ;
 	
 
 	}
 	@GetMapping("{idSender}/{idReceiver}")
 	public 	List<Message> getMessage(@PathVariable int idSender, @PathVariable int idReceiver) {
 		return messageservice.getMessage(idSender, idReceiver);
+	}
+	@GetMapping("{id}")
+	public 	List<MessageDTO2> getlastMessage(@PathVariable int id  ) {
+		return messageservice.getLastMessage(id);
 	}
 
 	@DeleteMapping("{idMsg}")

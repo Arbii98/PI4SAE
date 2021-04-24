@@ -5,3 +5,13 @@
 *.cache
 *.cache
 DotNet/.vs/DotNet/v16/.suo
+DotNet/.vs/DotNet/config/applicationhost.config
+DotNet/Service.Pattern/obj/Debug/Service.Pattern.pdb
+DotNet/Service.Pattern/obj/Debug/Service.Pattern.dll
+Spring/logsspringboot.log.2021-04-22.0.gz
+DotNet/.vs/DotNet/config/applicationhost.config
+DotNet/.vs/DotNet/v16/.suo
+DotNet/ConsommiTounsi.Data/bin/Debug/ConsommiTounsi.Data.dll
+*.pdb
+*.cache
+*.dll

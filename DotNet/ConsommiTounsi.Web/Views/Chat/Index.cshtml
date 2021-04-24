@@ -1,1 +1,199 @@
-﻿
+﻿@model IEnumerable<ConsommiTounsi.Domaine.entities.User>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-9">
+
+        <div class="box box-primary direct-chat direct-chat-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Direct Chat</h3>
+                <div class="box-tools pull-right">
+
+                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts"
+                            data-widget="chat-pane-toggle">
+                        <i class="fa fa-comments"></i>
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="box-body">
+
+                <!-- Conversations are loaded here -->
+                <div id="direct-chat-messages" class="direct-chat-messages scrollbar-chat"></div>
+
+                <div class="direct-chat-contacts">
+                    <ul class="contacts-list">
+                        @foreach (var p in ViewBag.result)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "Chat", new { idreciver = p.id })">
+
+                                    <img class="contacts-list-img" src="data:image/jpeg;base64,@p.image" alt="User Image">
+                                    <div class="contacts-list-info">
+                                        <span class="contacts-list-name">
+                                            @p.userName - @p.userName
+                                            <small class="contacts-list-date pull-right">@p.date</small>
+                                        </span>
+                                        <span class="contacts-list-msg">@p.msg </span>
+                                    </div>
+
+                                </a>
+                            </li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="box-footer">
+
+                <form name="formChat" id="formChat" method="get">
+                    <div class="input-group">
+                        <input type="text" name="message" id="message" placeholder="Type Message ..." class="form-control">
+                        <span class="input-group-btn">
+                            <button type="button" id="btn-send-message" class="btn btn-primary btn-flat">Send</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">
+
+
+        <div class="box-body">
+
+            <div class="direct-chat-messages">
+                <div class="direct-chat-msg">
+
+                    <span class="direct-chat-name pull-left"> <h3> List of Contact</h3></span>
+                </div>
+                @foreach (var p in ViewBag.contact)
+                {
+                    <a href="@Url.Action("Index", "Chat", new { idreciver = @p.id })">
+                        <div class="direct-chat-msg">
+                            <img class="direct-chat-img" src="data:image/png;base64,@p.image" alt="message user image">
+                            <span class="direct-chat-name pull-left"> @p.name </span>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+            $(document).ready(function () {
+                document.getElementById("message").focus();
+
+                let scrolled = false;
+
+                function uploadScroll() {
+                    console.log(scrolled)
+                    if (!scrolled) {
+
+                        var element = document.getElementById("direct-chat-messages");
+                        element.scrollTop = element.scrollHeight;
+                    }
+                }
+
+
+                function getMessages() {
+                    $formChat = $("#formChat").serialize();
+                    $.ajax({
+                        async: false,
+                        type: "POST",
+                        url: '@Url.Action("discussion", "Chat")',
+                        data: $formChat,
+                        success: function (msg) {
+                            $('#direct-chat-messages').html(msg);
+                        }
+                    });
+
+                    uploadScroll();
+                }
+                setInterval(function () {
+                    getMessages();
+                    uploadScroll();
+                }, 2000);
+
+                function sendMessage() {
+                    $formChat = $("#formChat").serialize();
+                    $.ajax({
+                        async: false,
+                        type: "POST",
+                        url: '@Url.Action("envoiMessage", "Chat")',
+                        data: $formChat,
+                        success: function (msg) {
+                            $('#direct-chat-messages').html(msg);
+                            $("#message").val("");
+                            var element = document.getElementById("direct-chat-messages");
+                            element.scrollTop = element.scrollHeight;
+                        }
+                    });
+                }
+
+                $("#direct-chat-messages").on('scroll', function () {
+                    scrolled = false;
+                });
+
+                getMessages();
+
+
+                $("#btn-send-message").click(function () {
+                    if ($("#message").val() != '') {
+                        sendMessage();
+                    }
+                });
+              //        $("#direct-chat-messages").height($('body').height() - 300);
+
+                /*
+                function asideHeight() {
+                    if ($(".content-wrapper").height() > $(window).height()) {
+                        $(".control-sidebar").height($(window).height());
+                    } else {
+                        $(".control-sidebar").height($(window).height() - 57);
+                    }
+                }
+                */
+                $("#message").keydown(function (e) {
+                     if (e.keyCode == 13) {
+                              if ($("#message").val() != '') {
+                                  console.log($("#message").val() + "!");
+                                      sendMessage();
+                                  return false;
+                              }
+                          }
+                });
+                //asideHeight();
+                $(".control-sidebar").height($(window).height() - 57);
+                window.onscroll = function () {
+                    if ($('.control-sidebar').is(':visible')) {
+                        $(".control-sidebar").css({ position: "fixed" });
+                        if (document.body.scrollTop > 57 || document.documentElement.scrollTop > 57) {
+                            $(".control-sidebar").css({ top: "0px" });
+                        } else {
+                            $(".control-sidebar").css({ position: "", top: "57px" });
+                        }
+                    } else {
+                        $(".control-sidebar").css({ position: "" });
+                    }
+
+                };
+            })
+
+    </script>
+}
+
+
+
