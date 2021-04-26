@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 import aces.esprit.entity.Jackpot;
+import aces.esprit.entity.JackpotEvolutionStat;
+import aces.esprit.entity.TopDonatorsStat;
 
 public interface IJackpotService {
 	
@@ -13,7 +15,7 @@ public interface IJackpotService {
 	float getCurrentMontantTotal();
 	float getMontantTotal();
 	
-	List<Object[]> GetJackpotEvolution();
-	List<Object[]> GetTopDonators();
+	List<JackpotEvolutionStat> GetJackpotEvolution();
+	List<TopDonatorsStat> GetTopDonators();
 
 }

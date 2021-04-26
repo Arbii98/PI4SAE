@@ -25,6 +25,8 @@ import org.apache.http.client.methods.*;
 
 
 import aces.esprit.entity.Jackpot;
+import aces.esprit.entity.JackpotEvolutionStat;
+import aces.esprit.entity.TopDonatorsStat;
 import aces.esprit.service.EmailService;
 import aces.esprit.service.JackpotService;
 
@@ -110,14 +112,14 @@ public class JackpotController {
 	
 	@GetMapping("/getJackpotEvolution")
 	@ResponseBody
-	public List<Object[]> getJackpotEvolution()
+	public List<JackpotEvolutionStat> getJackpotEvolution()
 	{
 		return js.GetJackpotEvolution();
 	}
 	
 	@GetMapping("/getTopDonators")
 	@ResponseBody
-	public List<Object[]> getTopDonators()
+	public List<TopDonatorsStat> getTopDonators()
 	{
 		return js.GetTopDonators();
 	}
