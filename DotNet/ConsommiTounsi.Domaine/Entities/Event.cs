@@ -9,7 +9,7 @@ namespace ConsommiTounsi.Domaine.Entities
 {
     public class Event
     {
-        public int? EventId { get; set; }
+        public int? Id { get; set; }
         public float Cout { get; set; }
         public DateTime DateEvent { get; set; }
         public string Titre { get; set; }

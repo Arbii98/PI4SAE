@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 
 import aces.esprit.entity.Event;
 import aces.esprit.entity.Jackpot;
+import aces.esprit.entity.JackpotEvolutionStat;
 import aces.esprit.entity.JackpotType;
+import aces.esprit.entity.TopDonatorsStat;
 import aces.esprit.entity.User;
 import aces.esprit.repository.EventRepository;
 import aces.esprit.repository.JackpotRepository;
@@ -86,12 +88,12 @@ public class JackpotService implements IJackpotService{
 	}
 
 	@Override
-	public List<Object[]> GetJackpotEvolution() {
+	public List<JackpotEvolutionStat> GetJackpotEvolution() {
 		return jr.GetJackpotEvolution();
 	}
 
 	@Override
-	public List<Object[]> GetTopDonators() {
+	public List<TopDonatorsStat> GetTopDonators() {
 		return jr.GetTopDonators();
 	}
 	

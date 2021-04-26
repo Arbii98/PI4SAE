@@ -4,22 +4,7 @@
 }
 
 <script src="https://use.fontawesome.com/your-embed-code.js"></script> <!-- TODO: Place your Font Awesome embed code  -->
-<div class="row">
-    <div class="col-lg-3 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <center><a href="@Url.Action("Historique", "Event")"><button class="btn btn-dark"> <span class="fa fa-eye"></span> Historique Events</button></a></center>
-            </div>
-        </div>
-     </div>
-    <div class="col-lg-3 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <center><a href="@Url.Action("Create", "Event")"><button class="btn btn-success"> <span class="fa fa-plus"></span> Add Event</button></a></center>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -47,7 +32,6 @@
                                 <td>@item.Fondateur.name</td>
                                 <td>
                                     <div>
-                                        <button class="btn btn-dark">Modifier</button>
                                         <a href="@Url.Action("Delete", "Event", new {id=item.Id})"><button class="btn btn-danger">Supprimer</button></a>
                                     </div>
                                 </td>
@@ -61,3 +45,4 @@
         </div>
     </div>
 </div>
+
